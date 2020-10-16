@@ -3,11 +3,11 @@
   <title>隽永的部落阁</title>
   
   
-  <link href="https://yvv.gitee.io/yinyongwei-blog/atom.xml" rel="self"/>
+  <link href="http://example.com/atom.xml" rel="self"/>
   
-  <link href="https://yvv.gitee.io/yinyongwei-blog/"/>
+  <link href="http://example.com/"/>
   <updated>2020-10-16T07:12:59.846Z</updated>
-  <id>https://yvv.gitee.io/yinyongwei-blog/</id>
+  <id>http://example.com/</id>
   
   <author>
     <name>隽永</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://yvv.gitee.io/yinyongwei-blog/2020/10/16/hello-world/"/>
-    <id>https://yvv.gitee.io/yinyongwei-blog/2020/10/16/hello-world/</id>
+    <link href="http://example.com/2020/10/16/hello-world/"/>
+    <id>http://example.com/2020/10/16/hello-world/</id>
     <published>2020-10-16T07:12:59.846Z</published>
     <updated>2020-10-16T07:12:59.846Z</updated>
     
