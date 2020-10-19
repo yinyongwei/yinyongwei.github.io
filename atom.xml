@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-10-19T01:14:37.821Z</updated>
+  <updated>2020-10-19T01:59:03.458Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,96 +17,109 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://example.com/2020/10/19/%E7%BB%99%E4%BD%A0%E4%B8%80%E6%AC%A1%E6%9C%BA%E4%BC%9A%E9%9D%A2%E8%AF%95%E6%9E%B6%E6%9E%84%E5%B8%88%20%E4%BD%A0%E4%BC%9A%E9%97%AE%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/"/>
-    <id>http://example.com/2020/10/19/%E7%BB%99%E4%BD%A0%E4%B8%80%E6%AC%A1%E6%9C%BA%E4%BC%9A%E9%9D%A2%E8%AF%95%E6%9E%B6%E6%9E%84%E5%B8%88%20%E4%BD%A0%E4%BC%9A%E9%97%AE%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/</id>
-    <published>2020-10-19T01:14:58.219Z</published>
-    <updated>2020-10-19T01:14:37.821Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;给你一次机会面试架构师</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
+    <title>写好Java代码的30条经验总结</title>
     <link href="http://example.com/2020/10/19/%E5%86%99%E5%A5%BDJava%E4%BB%A3%E7%A0%81%E7%9A%8430%E6%9D%A1%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/"/>
     <id>http://example.com/2020/10/19/%E5%86%99%E5%A5%BDJava%E4%BB%A3%E7%A0%81%E7%9A%8430%E6%9D%A1%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93/</id>
-    <published>2020-10-19T01:14:58.216Z</published>
-    <updated>2020-10-19T01:14:20.179Z</updated>
+    <published>2020-10-19T01:54:40.000Z</published>
+    <updated>2020-10-19T01:59:03.458Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;&lt;strong&gt;写好Java代码的30条经验总结&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;2014-12-15    分类：&lt;a href=&quot;http://www.codeceo.com/article/category/develop/java&quot;&gt;JAVA开发&lt;/a&gt;、&lt;a</summary>
+    <summary type="html">&lt;p&gt;成为一个优秀的Java&lt;a href=&quot;http://www.codeceo.com/&quot;&gt;程序员&lt;/a&gt;，有着良好的代码编写习惯是必不可少的。下面就让我们来看看代码编写的30条建议吧。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;(1)</summary>
         
       
     
     
     
+    
+    <category term="面试技巧" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
   <entry>
-    <title></title>
+    <title>当面试官问「你有什么要问我的吗」时，应该问什么？</title>
+    <link href="http://example.com/2020/10/19/%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+    <id>http://example.com/2020/10/19/%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F/</id>
+    <published>2020-10-19T01:54:40.000Z</published>
+    <updated>2020-10-19T01:57:41.082Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;当面试官问「你有什么要问我的吗」时，应该问什么？&lt;/p&gt;
+&lt;p&gt;经常面试别人，也被别人面试的人来答。下面的主要内容是授人以渔，务虚。伸手党请退散，面试初级职位的恐怕也没用。&lt;/p&gt;
+&lt;p&gt;简而言之，尊重自己的权利，尊重面试官的感受，这样可以帮你获得最大的利益。&lt;/p&gt;
+&lt;p</summary>
+        
+      
+    
+    
+    
+    
+    <category term="面试技巧" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>给你一次机会面试架构师 你会问什么问题？</title>
+    <link href="http://example.com/2020/10/19/%E7%BB%99%E4%BD%A0%E4%B8%80%E6%AC%A1%E6%9C%BA%E4%BC%9A%E9%9D%A2%E8%AF%95%E6%9E%B6%E6%9E%84%E5%B8%88%20%E4%BD%A0%E4%BC%9A%E9%97%AE%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/"/>
+    <id>http://example.com/2020/10/19/%E7%BB%99%E4%BD%A0%E4%B8%80%E6%AC%A1%E6%9C%BA%E4%BC%9A%E9%9D%A2%E8%AF%95%E6%9E%B6%E6%9E%84%E5%B8%88%20%E4%BD%A0%E4%BC%9A%E9%97%AE%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F/</id>
+    <published>2020-10-19T01:47:11.000Z</published>
+    <updated>2020-10-19T01:48:08.835Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;做技术就跟练武一样，在练武的不同阶段，分招式和心法。技术也一样，在不同的阶段，也分招式和心法。给你一次机会，你会如何考察架构师的武力值？&lt;/p&gt;
+&lt;p&gt;作者：田伟宇，本文转自作者博客，点击原文阅读查看网页版文章。&lt;/p&gt;
+&lt;p&gt;其实本文想说的是：当面试一个架构师的时候，我们</summary>
+        
+      
+    
+    
+    
+    
+    <category term="面试技巧" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>超全面：程序员跳槽神级攻略</title>
     <link href="http://example.com/2020/10/19/%E8%B6%85%E5%85%A8%E9%9D%A2%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B7%B3%E6%A7%BD%E7%A5%9E%E7%BA%A7%E6%94%BB%E7%95%A5/"/>
     <id>http://example.com/2020/10/19/%E8%B6%85%E5%85%A8%E9%9D%A2%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B7%B3%E6%A7%BD%E7%A5%9E%E7%BA%A7%E6%94%BB%E7%95%A5/</id>
-    <published>2020-10-19T01:14:58.213Z</published>
-    <updated>2020-10-19T01:13:38.903Z</updated>
+    <published>2020-10-19T01:47:11.000Z</published>
+    <updated>2020-10-19T01:59:22.707Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;超全面：程序员跳槽神级攻略&lt;/p&gt;
-&lt;p&gt;这次我们想聊的，就是程序员跳槽这件事儿，我打算从三个方面来说：&lt;/p&gt;
+    <summary type="html">&lt;p&gt;这次我们想聊的，就是程序员跳槽这件事儿，我打算从三个方面来说：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;什么时候该跳槽&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;跳槽前你需要做的准备工作&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;到哪里找跳槽机会&lt;/p&gt;
-</summary>
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;stron</summary>
         
       
     
     
     
     
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://example.com/2020/10/19/[%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F]%7B.ul%7D/"/>
-    <id>http://example.com/2020/10/19/[%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F]%7B.ul%7D/</id>
-    <published>2020-10-19T01:14:58.208Z</published>
-    <updated>2020-10-19T01:14:44.505Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;http://www.zhihu.com/question/28058827&quot;&gt;&lt;strong&gt;[当面试官问「你有什么要问我的吗」时，应该问什么？]{.ul}&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
+    <category term="面试技巧" scheme="http://example.com/tags/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
