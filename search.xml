@@ -131,6 +131,23 @@
       </tags>
   </entry>
   <entry>
+    <title>解决宿主机无法访问docker内的服务</title>
+    <url>/2020/10/23/%E8%A7%A3%E5%86%B3%E5%AE%BF%E4%B8%BB%E6%9C%BA%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AEdocker%E5%86%85%E7%9A%84%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<p>#解决宿主机无法访问docker内的服务</p>
+<p>##原因：docker网卡地址冲突</p>
+<p>##brctl命令需要安装： <code>yum install -y bridge-utils</code></p>
+<p>##解决：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br><span class="line">sudo ip link set dev docker0 down         </span><br><span class="line">sudo brctl delbr docker0</span><br><span class="line">sudo iptables -t nat -F POSTROUTING</span><br><span class="line">sudo brctl addbr docker0</span><br><span class="line">sudo ip addr add 172.16.10.1/24 dev docker0</span><br><span class="line">sudo ip link set dev docker0 up 			</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑daemon-json"><a href="#编辑daemon-json" class="headerlink" title="编辑daemon.json"></a>编辑daemon.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</span><br><span class="line">		#daemon.json</span><br><span class="line">			&#123;</span><br><span class="line">    			&quot;bip&quot;: &quot;172.16.10.1&#x2F;24&quot;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启Docker"><a href="#重启Docker" class="headerlink" title="重启Docker"></a>重启Docker</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl  restart  docker</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>超全面：程序员跳槽神级攻略</title>
     <url>/2020/10/19/%E8%B6%85%E5%85%A8%E9%9D%A2%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B7%B3%E6%A7%BD%E7%A5%9E%E7%BA%A7%E6%94%BB%E7%95%A5/</url>
     <content><![CDATA[<p>这次我们想聊的，就是程序员跳槽这件事儿，我打算从三个方面来说：</p>
