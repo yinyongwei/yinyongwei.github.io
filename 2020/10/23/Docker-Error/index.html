@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="keywords" content="hexo,javascript"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>记录一次Docker 启动失败的问题 |</title><meta name="generator" content="hexo-theme-ayer"><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/dist/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"><link rel="stylesheet" href="/css/custom.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><link rel="alternate" href="/atom.xml" title="隽永的部落阁" type="application/atom+xml"></head></html><body><div id="app"><main class="content on"><section class="outer"><article id="post-Docker-Error" class="article article-type-post" itemscope itemprop="blogPost" data-scroll-reveal><div class="article-inner"><header class="article-header"><h1 class="article-title sea-center" style="border-left:0" itemprop="name">记录一次Docker 启动失败的问题</h1></header><div class="article-meta"><a href="/2020/10/23/Docker-Error/" class="article-date"><time datetime="2020-10-23T04:11:42.000Z" itemprop="datePublished">2020-10-23</time></a><div class="word_count"><span class="post-time"><span class="post-meta-item-icon"><i class="ri-quill-pen-line"></i> <span class="post-meta-item-text">Word count:</span> <span class="post-count">153</span> </span></span><span class="post-time">&nbsp; | &nbsp; <span class="post-meta-item-icon"><i class="ri-book-open-line"></i> <span class="post-meta-item-text">Reading time≈</span> <span class="post-count">1 min</span></span></span></div></div><div class="tocbot"></div><div class="article-entry" itemprop="articleBody"><h1 id="记录一次Docker-启动失败的问题-inotify-add-watch-7-dev-dm-1-10-failed-No-such-file-or-directory"><a href="#记录一次Docker-启动失败的问题-inotify-add-watch-7-dev-dm-1-10-failed-No-such-file-or-directory" class="headerlink" title="记录一次Docker 启动失败的问题   inotify_add_watch(7, /dev/dm-1, 10) failed: No such file or directory"></a>记录一次Docker 启动失败的问题 inotify_add_watch(7, /dev/dm-1, 10) failed: No such file or directory</h1><p>使用了阿里云的一键安装脚本 <code>curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun</code> 在 移动云新服务上进行了执行安装， 然后通过命令，进行启动<code>systemctl start docekr</code></p><p>出现报错</p><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201023103437823.png" alt="image-20201023103437823"></p><p>它提示我，使用 <code>systemctl status docker.service</code> 和 <code>journalctl -xe</code> 命令进行查看；</p><p>采用 <code>systemctl status docker.service</code></p><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/snipaste_20201023_102619.jpg" alt="snipaste_20201023_102619"></p><p>采用 <code>journalctl -xe</code></p><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/snipaste_20201023_102833.jpg" alt="snipaste_20201023_102833"></p><p>红色框框标记出，提示 inotify_add_watch(7, /dev/dm-1, 10) failed: No such file or directory</p><p>原因:</p><p>xfsprogs版本过低</p><p>解决方法:</p><p><code>yum update xfsprogs</code></p><p>重启docker:</p><p><code>systemctl daemon-reload</code></p><p><code>systemctl restart docker</code></p><div id="reword-out"><div id="reward-btn">Donate</div></div></div><div class="declare"><ul class="post-copyright"><li><i class="ri-copyright-line"></i> <strong>Copyright： </strong>Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.</li></ul></div><footer class="article-footer"><div class="share-btn"><span class="share-sns share-outer"><i class="ri-share-forward-line"></i> 分享</span><div class="share-wrap"><i class="arrow"></i><div class="share-icons"><a class="weibo share-sns" href="javascript:;" data-type="weibo"><i class="ri-weibo-fill"></i> </a><a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin"><i class="ri-wechat-fill"></i> </a><a class="qq share-sns" href="javascript:;" data-type="qq"><i class="ri-qq-fill"></i> </a><a class="douban share-sns" href="javascript:;" data-type="douban"><i class="ri-douban-line"></i> </a><a class="facebook share-sns" href="javascript:;" data-type="facebook"><i class="ri-facebook-circle-fill"></i> </a><a class="twitter share-sns" href="javascript:;" data-type="twitter"><i class="ri-twitter-fill"></i> </a><a class="google share-sns" href="javascript:;" data-type="google"><i class="ri-google-fill"></i></a></div></div></div><div class="wx-share-modal"><a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a><p>扫一扫，分享到微信</p><div class="wx-qrcode"><img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://example.com/2020/10/23/Docker-Error/" alt="微信分享二维码"></div></div><div id="share-mask"></div><ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li></ul></footer></div><nav class="article-nav"><a href="/2020/10/19/%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F/" class="article-nav-link"><strong class="article-nav-caption">下一篇</strong><div class="article-nav-title">当面试官问「你有什么要问我的吗」时，应该问什么？</div></a></nav><div id="vcomments-box"><div id="vcomments"></div></div><script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script><script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script>new Valine({el:"#vcomments",app_id:"",app_key:"",path:window.location.pathname,avatar:"monsterid",placeholder:"给我的文章加点评论吧~",recordIP:!0});const infoEle=document.querySelector("#vcomments .info");infoEle&&infoEle.childNodes&&0<infoEle.childNodes.length&&infoEle.childNodes.forEach(function(e){e.parentNode.removeChild(e)})</script><style>#vcomments-box{padding:5px 30px}@media screen and (max-width:800px){#vcomments-box{padding:5px 0}}#vcomments-box #vcomments{background-color:#fff}.v .vlist .vcard .vh{padding-right:20px}.v .vlist .vcard{padding-left:10px}</style></article></section><footer class="footer"><div class="outer"><ul><li>Copyrights &copy; 2015-2020 <i class="ri-heart-fill heart_icon"></i> 隽永</li></ul><ul><li>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> <span class="division">|</span> Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a></li></ul><ul><li><span><span><i class="ri-user-3-fill"></i>Visitors:<span id="busuanzi_value_site_uv"></span> <span class="division">|</span> <span><i class="ri-eye-fill"></i>Views:<span id="busuanzi_value_page_pv"></span></span></span></span></li></ul><ul></ul><ul></ul><ul><li><script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914"></script></li></ul></div></footer><div class="float_btns"><div class="totop" id="totop"><i class="ri-arrow-up-line"></i></div><div class="todark" id="todark"><i class="ri-moon-line"></i></div></div></main><aside class="sidebar on"><button class="navbar-toggle"></button><nav class="navbar"><div class="logo"><a href="/"><img src="/images/ayer-side.svg" alt="隽永的部落阁"></a></div><ul class="nav nav-main"><li class="nav-item"><a class="nav-item-link" href="/">主页</a></li><li class="nav-item"><a class="nav-item-link" href="/archives">归档</a></li><li class="nav-item"><a class="nav-item-link" href="/categories">分类</a></li><li class="nav-item"><a class="nav-item-link" href="/tags">标签</a></li><li class="nav-item"><a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a></li><li class="nav-item"><a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a></li><li class="nav-item"><a class="nav-item-link" href="/friends">友链</a></li><li class="nav-item"><a class="nav-item-link" href="/2019/about">关于我</a></li></ul></nav><nav class="navbar navbar-bottom"><ul class="nav"><li class="nav-item"><a class="nav-item-link nav-item-search" title="Search"><i class="ri-search-line"></i> </a><a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed"><i class="ri-rss-line"></i></a></li></ul></nav><div class="search-form-wrap"><div class="local-search local-search-plugin"><input type="search" id="local-search-input" class="local-search-input" placeholder="Search..."><div id="local-search-result" class="local-search-result"></div></div></div></aside><script>window.matchMedia("(max-width: 768px)").matches&&(document.querySelector(".content").classList.remove("on"),document.querySelector(".sidebar").classList.remove("on"))</script><div id="mask"></div><div id="reward"><span class="close"><i class="ri-close-line"></i></span><p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p><div class="reward-box"><div class="reward-item"><img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg"> <span class="reward-type">支付宝</span></div><div class="reward-item"><img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg"> <span class="reward-type">微信</span></div></div></div><script src="/js/jquery-2.0.3.min.js"></script><script src="/js/lazyload.min.js"></script><script src="/js/tocbot.min.js"></script><script>tocbot.init({tocSelector:".tocbot",contentSelector:".article-entry",headingSelector:"h1, h2, h3, h4, h5, h6",hasInnerContainers:!0,scrollSmooth:!0,scrollContainer:"main",positionFixedSelector:".tocbot",positionFixedClass:"is-position-fixed",fixedSidebarOffset:"auto"})</script><script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script><script src="/dist/main.js"></script><div class="pswp" tabindex="-1" role="dialog" aria-hidden="true"><div class="pswp__bg"></div><div class="pswp__scroll-wrap"><div class="pswp__container"><div class="pswp__item"></div><div class="pswp__item"></div><div class="pswp__item"></div></div><div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button> <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button> <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button> <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"><script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script><script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script><script>function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()</script><script src="/js/busuanzi-2.3.pure.min.js"></script><link rel="stylesheet" href="/css/clipboard.css"><script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script><script>function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);</script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({log:!1,pluginJsPath:"lib/",pluginModelPath:"assets/",pluginRootPath:"live2dw/",tagMode:!1})</script></body>
