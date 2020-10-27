@@ -25,6 +25,51 @@
       </tags>
   </entry>
   <entry>
+    <title>Jenkins 开始一个新任务构建</title>
+    <url>/2020/10/27/Jenkins%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AAtask/</url>
+    <content><![CDATA[<h1 id="Jenkins-开始一个新任务构建"><a href="#Jenkins-开始一个新任务构建" class="headerlink" title="Jenkins 开始一个新任务构建"></a>Jenkins 开始一个新任务构建</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>宿主机上准备maven , jdk 环境</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line">-u root \</span><br><span class="line">-itd \</span><br><span class="line">-p 8081:8080 \</span><br><span class="line">-p 50000:50000 \</span><br><span class="line">--name jenkins \</span><br><span class="line">--privileged&#x3D;true \</span><br><span class="line">-v &#x2F;var&#x2F;run&#x2F;docker.sock:&#x2F;var&#x2F;run&#x2F;docker.sock \</span><br><span class="line">-v &#x2F;sykj&#x2F;srv&#x2F;jenkins:&#x2F;var&#x2F;jenkins_home \</span><br><span class="line">-v &#x2F;usr&#x2F;local&#x2F;maven3.6.3:&#x2F;usr&#x2F;maven \</span><br><span class="line">-v &#x2F;usr&#x2F;local&#x2F;m2-repo:&#x2F;usr&#x2F;local&#x2F;m2-repo \</span><br><span class="line">-v &#x2F;usr&#x2F;local&#x2F;maven3.6.3&#x2F;conf&#x2F;settings.xml:&#x2F;usr&#x2F;local&#x2F;maven&#x2F;conf&#x2F;settings.xml \</span><br><span class="line">-v &#x2F;sykj&#x2F;jdk1.8.0_151:&#x2F;usr&#x2F;jdk1.8.0_151 \</span><br><span class="line">-v &#x2F;usr&#x2F;bin&#x2F;docker:&#x2F;usr&#x2F;bin&#x2F;docker \</span><br><span class="line">--env JAVA_OPTS&#x3D;&quot;-Duser.timezone&#x3D;GMT+08&quot; jenkins&#x2F;jenkins:2.249.2-lts-alpine</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="系统配置"><a href="#系统配置" class="headerlink" title="系统配置"></a>系统配置</h3><h4 id="Gitee配置"><a href="#Gitee配置" class="headerlink" title="Gitee配置"></a>Gitee配置</h4><p>点击  系统管理&gt;系统设置&gt;Gitee配置，   这里已经是添加好Gitee 插件的效果，如下，填入 <a href="https://gitee.com/">https://gitee.com</a> 到Gitee域名、 证书令牌需要从Gitee中自行获取并填入  参考链接 <a href="https://gitee.com/profile/personal_access_tokens%E3%80%82">https://gitee.com/profile/personal_access_tokens。</a></p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027161455853.png" alt="image-20201027161455853"></p>
+<h3 id="全局工具配置"><a href="#全局工具配置" class="headerlink" title="全局工具配置"></a>全局工具配置</h3><h4 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h4><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027162123624.png" alt="image-20201027162123624"></p>
+<h4 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h4><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027162554051.png" alt="image-20201027162554051"></p>
+<h4 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h4><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027162615217.png" alt="image-20201027162615217"></p>
+<h4 id="Jdk"><a href="#Jdk" class="headerlink" title="Jdk"></a>Jdk</h4><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027162632743.png" alt="image-20201027162632743"></p>
+<h2 id="开始创建任务"><a href="#开始创建任务" class="headerlink" title="开始创建任务"></a>开始创建任务</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建一个Maven项目，如果你不是Maven构建的项目请选择第一个 自由风格。</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027162847821.png" alt="image-20201027162847821"></p>
+<h3 id="源码管理"><a href="#源码管理" class="headerlink" title="源码管理"></a>源码管理</h3><p>复制码云上的Https 协议仓库地址，粘贴到URL中，并添加自己的gitee 私人账户；</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027191046374.png" alt="image-20201027191046374"></p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027191030259.png" alt="image-20201027191030259"></p>
+<h3 id="构建触发器"><a href="#构建触发器" class="headerlink" title="构建触发器"></a>构建触发器</h3><p>勾选Gitee webhook 触发构建……   ，复制URL备用</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027171215433.png" alt="image-20201027171215433"></p>
+<p>点击生成密码，并复制。</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027171313819.png" alt="image-20201027171313819"></p>
+<p>打开码云仓库，把URL与密码 配置到 WebHooks 并保存。</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027171356189.png" alt="image-20201027171356189"></p>
+<h3 id="Build"><a href="#Build" class="headerlink" title="Build"></a>Build</h3><p>粘贴</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">package jib:build</span><br></pre></td></tr></table></figure>
+
+<p> 到 Goals and options中，注意不要故意去加 mvn 。</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027185824115.png" alt="image-20201027185824115"></p>
+<h3 id="Post-Steps"><a href="#Post-Steps" class="headerlink" title="Post Steps"></a>Post Steps</h3><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027171932307.png" alt="image-20201027171932307"></p>
+<p>选择执行shell ，粘贴如下命令（命令仅供参考，业务场景不同请自行修改）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;bash</span><br><span class="line"></span><br><span class="line">docker login --username&#x3D;shangyekj registry.cn-hangzhou.aliyuncs.com --password  90-&#x3D;uiop</span><br><span class="line"></span><br><span class="line">result&#x3D;$(docker ps -a |grep &quot;cloud&quot; )</span><br><span class="line">if [[ &quot;$result&quot; !&#x3D; &quot;&quot; ]]</span><br><span class="line">then</span><br><span class="line">echo &quot;执行 删除容器 的操作&quot;</span><br><span class="line">docker rm -f cloud-gateway cloud-system cloud-auth</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result1&#x3D;$(docker images |grep &quot;cloud-gateway&quot; )</span><br><span class="line">if [[ &quot;$result1&quot; !&#x3D; &quot;&quot; ]]</span><br><span class="line">then</span><br><span class="line">echo &quot;执行删除旧镜像 拉取新镜像的操作&quot;</span><br><span class="line">docker rmi &quot;registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-gateway:20201026&quot; &amp;</span><br><span class="line"></span><br><span class="line">docker run -d --name cloud-gateway -p 6000:6000 registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-gateway:20201026 </span><br><span class="line"></span><br><span class="line">else</span><br><span class="line">docker run -d --name cloud-gateway -p 6000:6000 registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-gateway:20201026 	</span><br><span class="line"></span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">result2&#x3D;$(docker images |grep &quot;cloud-system&quot; )</span><br><span class="line">if [[ &quot;$result2&quot; !&#x3D; &quot;&quot; ]]</span><br><span class="line">then</span><br><span class="line">echo &quot;执行删除旧镜像 拉取新镜像的操作&quot;</span><br><span class="line"></span><br><span class="line">docker rmi &quot;registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-system:20201026&quot; </span><br><span class="line">docker run -d --name cloud-system -P registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-system:20201026 </span><br><span class="line"></span><br><span class="line">else</span><br><span class="line">docker run -d --name cloud-system -P registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-system:20201026 </span><br><span class="line"></span><br><span class="line">fi	</span><br><span class="line"></span><br><span class="line">result3&#x3D;$(docker images |grep &quot;cloud-auth&quot; )</span><br><span class="line">if [[ &quot;$result3&quot; !&#x3D; &quot;&quot; ]]</span><br><span class="line">then</span><br><span class="line">echo &quot;执行删除旧镜像 拉取新镜像的操作&quot;</span><br><span class="line">docker rmi &quot;registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-auth:20201026&quot;</span><br><span class="line">docker run -d --name cloud-auth -P registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-auth:20201026 </span><br><span class="line">else</span><br><span class="line">docker run -d --name cloud-auth -P registry.cn-hangzhou.aliyuncs.com&#x2F;sykj_docker_iso&#x2F;cloud-auth:20201026 </span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="应用测试"><a href="#应用测试" class="headerlink" title="应用测试"></a>应用测试</h2><p>保存后，点击任务上的构建按钮，等待片可看效果</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20201027190220189.png" alt="image-20201027190220189"></p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>当面试官问「你有什么要问我的吗」时，应该问什么？</title>
     <url>/2020/10/19/%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<p>当面试官问「你有什么要问我的吗」时，应该问什么？</p>
