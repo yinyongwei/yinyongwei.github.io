@@ -65,11 +65,11 @@
 <p><strong>(5) 设计一个类时，请设身处地为客户程序员考虑一下（类的使用方法应该是非常明确的）。</strong>然后，再设身处地为管理代码的人考虑一下（预计有可能进行哪些形式的修改，想想用什么方法可把它们变得更简单）。</p>
 <p><strong>(6) 使类尽可能短小精悍，而且只解决一个特定的问题。</strong>下面是对类设计的一些建议：</p>
 <ul>
-<li><p>一个复杂的开关语句：考虑采用”多形”机制</p>
+<li><p>  一个复杂的开关语句：考虑采用”多形”机制</p>
 </li>
-<li><p>数量众多的方法涉及到类型差别极大的操作：考虑用几个类来分别实现</p>
+<li><p>  数量众多的方法涉及到类型差别极大的操作：考虑用几个类来分别实现</p>
 </li>
-<li><p>许多成员变量在特征上有很大的差别：考虑使用几个类</p>
+<li><p>  许多成员变量在特征上有很大的差别：考虑使用几个类</p>
 </li>
 </ul>
 <p><strong>(7) 让一切东西都尽可能地”私有”–private。</strong>可使库的某一部分”公共化”（一个方法、类或者一个字段等等），就永远不能把它拿出。若强行拿出，就可能破坏其他人现有的代码，使他们不得不重新编写和设计。若只公布自己必须公布的，就可放心大胆地改变其他任何东西。在多线程环境中，隐私是特别重要的一个因素–只有private字段才能在非同步使用的情况下受到保护。</p>
@@ -152,11 +152,11 @@
 <p>上面说的听着很玄，下面我就直接回到正题：我们面试架构师候选人时，应该问什么样的问题？</p>
 <p>大致会有几种类型的问题：</p>
 <ul>
-<li><p>当前技术领域中的一些技术细节</p>
+<li><p>  当前技术领域中的一些技术细节</p>
 </li>
-<li><p>算法和数据结构</p>
+<li><p>  算法和数据结构</p>
 </li>
-<li><p>方案设计思路</p>
+<li><p>  方案设计思路</p>
 </li>
 </ul>
 <p><strong>第一类：当前技术领域的技术细节类问题</strong></p>
@@ -169,11 +169,11 @@
 <p>这样的问题还可以拓展开来：你完全可以问一个架构师候选人某一个领域的这种类似问题，而恰好你比他熟悉，如果候选人答不上来，你会认为他可能在这方面花的时间还不够，这方面的理解不够深，导致减分。但如果答上来了，有可能加分有可能不加分。</p>
 <p>然而，这一切并没有什么卵用。如果角色对调，让候选人来面试你，他完全可以问出各种这样类似的问题，一样让你抓耳挠腮百思不得其解。那么该如何考察一个架构师候选人对自己领域中技术细节的理解呢？我们来看下面这些问题：</p>
 <ul>
-<li><p>你觉得block当初是为了解决什么样的问题而设计的？你如何区分何时使用block，何时不使用？</p>
+<li><p>  你觉得block当初是为了解决什么样的问题而设计的？你如何区分何时使用block，何时不使用？</p>
 </li>
-<li><p>你觉得ReactiveCocoa当初是为了解决什么样的问题而设计的？你何时会考虑使用RAC，何时不用？</p>
+<li><p>  你觉得ReactiveCocoa当初是为了解决什么样的问题而设计的？你何时会考虑使用RAC，何时不用？</p>
 </li>
-<li><p>你觉得MVVM这样的思想是为了解决什么样的问题而产生的？</p>
+<li><p>  你觉得MVVM这样的思想是为了解决什么样的问题而产生的？</p>
 </li>
 </ul>
 <p>答案在本文不是重点，当然如果各位对答案感兴趣，可以在评论区问一下，我在评论区回答。在我遇到的各种面试官中，我从来没遇到过能问出这样类似问题的面试官。我面试别人的时候，我问过这种比较侧重对某一项技术的理解的问题，有人能答好有人答不好，然后从招进来的人看，当初答好这种问题的人，后来都在团队中起到了顶梁柱的作用。答不好这样问题的人，但是他们因为知道很多技术细节，也还是招进来了，虽然也能很好地完成需求和任务，但是代码结构、设计思路都会有或多或少的缺陷，写出来的组件在使用上也会感觉怪怪。</p>
@@ -188,11 +188,11 @@
 <p><strong>方案设计思路类问题</strong></p>
 <p>第三类问题，方案设计思路。大概一年以前我在面试携程的时候，遇到过面试官问我这种问题，其它我就没有遇到过了，一般都是我在自我介绍的时候主动挑一个去讲。我在面试别人的时候，我也会问这样的问题，比如说：</p>
 <ul>
-<li><p>对于一个app的网络层，你在设计时，你会考虑哪些问题？</p>
+<li><p>  对于一个app的网络层，你在设计时，你会考虑哪些问题？</p>
 </li>
-<li><p>对于一个app的持久层，如果让你直接用sqlite，你如何设计版本迁移方案？</p>
+<li><p>  对于一个app的持久层，如果让你直接用sqlite，你如何设计版本迁移方案？</p>
 </li>
-<li><p>工作中，你会采用哪些手段来做解耦？</p>
+<li><p>  工作中，你会采用哪些手段来做解耦？</p>
 </li>
 </ul>
 <p>严格来说，大部分面试官也会问这样的问题，但是是看到你简历上写过你有这个经验，然后直接问这个方案你是怎么做的，而不是问这个方案你是怎么设计的。在我看来，大部分方案的实现其实没有什么技术含量，真正有技术含量的地方在于，拿到这个问题时，你是如何思考的。就比如数据库版本迁移方案，设计的过程是很艰苦的，但设计完毕实现的时候，就是码代码，不能说完全没有技术含量，只能说实现的时候所需要耗费的脑力跟设计时候比，差太远了，在我看来属于没有什么技术含量。</p>
@@ -208,29 +208,15 @@
       </tags>
   </entry>
   <entry>
-    <title>解决宿主机无法访问docker内的服务</title>
-    <url>/2020/10/23/%E8%A7%A3%E5%86%B3%E5%AE%BF%E4%B8%BB%E6%9C%BA%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AEdocker%E5%86%85%E7%9A%84%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h1 id="解决宿主机无法访问docker内的服务"><a href="#解决宿主机无法访问docker内的服务" class="headerlink" title="解决宿主机无法访问docker内的服务"></a>解决宿主机无法访问docker内的服务</h1><h2 id="原因：docker网卡地址冲突"><a href="#原因：docker网卡地址冲突" class="headerlink" title="原因：docker网卡地址冲突"></a>原因：docker网卡地址冲突</h2><h2 id="brctl命令安装"><a href="#brctl命令安装" class="headerlink" title="brctl命令安装"></a>brctl命令安装</h2><p> <code>yum install -y bridge-utils</code></p>
-<h2 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br><span class="line">sudo ip link set dev docker0 down         </span><br><span class="line">sudo brctl delbr docker0</span><br><span class="line">sudo iptables -t nat -F POSTROUTING</span><br><span class="line">sudo brctl addbr docker0</span><br><span class="line">sudo ip addr add 172.16.10.1/24 dev docker0</span><br><span class="line">sudo ip link set dev docker0 up 			</span><br></pre></td></tr></table></figure>
-
-<h2 id="编辑daemon-json"><a href="#编辑daemon-json" class="headerlink" title="编辑daemon.json"></a>编辑daemon.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</span><br><span class="line">		#daemon.json</span><br><span class="line">			&#123;</span><br><span class="line">    			&quot;bip&quot;: &quot;172.16.10.1&#x2F;24&quot;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启Docker"><a href="#重启Docker" class="headerlink" title="重启Docker"></a>重启Docker</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl  restart  docker</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>超全面：程序员跳槽神级攻略</title>
     <url>/2020/10/19/%E8%B6%85%E5%85%A8%E9%9D%A2%EF%BC%9A%E7%A8%8B%E5%BA%8F%E5%91%98%E8%B7%B3%E6%A7%BD%E7%A5%9E%E7%BA%A7%E6%94%BB%E7%95%A5/</url>
     <content><![CDATA[<p>这次我们想聊的，就是程序员跳槽这件事儿，我打算从三个方面来说：</p>
 <ol>
-<li><p>什么时候该跳槽</p>
+<li><p> 什么时候该跳槽</p>
 </li>
-<li><p>跳槽前你需要做的准备工作</p>
+<li><p> 跳槽前你需要做的准备工作</p>
 </li>
-<li><p>到哪里找跳槽机会</p>
+<li><p> 到哪里找跳槽机会</p>
 </li>
 </ol>
 <p><strong>什么时候该跳槽</strong></p>
@@ -271,11 +257,11 @@
 <p>一旦你决定要离职，（除非事发仓促，比如家庭变故之类的）一定要做充分的准备。那么，在跳槽前我们都要做哪些准备工作呢？</p>
 <p>其实我觉得从大的方面讲就三件事儿：</p>
 <ol>
-<li><p>分析自己</p>
+<li><p> 分析自己</p>
 </li>
-<li><p>分析目标行业与公司</p>
+<li><p> 分析目标行业与公司</p>
 </li>
-<li><p>撰写简历</p>
+<li><p> 撰写简历</p>
 </li>
 </ol>
 <p><strong>分析自己</strong></p>
@@ -283,94 +269,94 @@
 <p>一旦你决定跳槽，那就要分析自己。</p>
 <p>要知道我有什么：</p>
 <ul>
-<li><p>工作几年</p>
+<li><p>  工作几年</p>
 </li>
-<li><p>待过的公司有什么影响力，产品有什么特色</p>
+<li><p>  待过的公司有什么影响力，产品有什么特色</p>
 </li>
-<li><p>掌握了哪些技术，程度如何</p>
+<li><p>  掌握了哪些技术，程度如何</p>
 </li>
-<li><p>和周围的人比，我长处在哪里</p>
+<li><p>  和周围的人比，我长处在哪里</p>
 </li>
-<li><p>学新东西快不快，举个例子</p>
+<li><p>  学新东西快不快，举个例子</p>
 </li>
-<li><p>解决问题能力如何，举几个例子</p>
+<li><p>  解决问题能力如何，举几个例子</p>
 </li>
-<li><p>沟通与协作能力怎样</p>
+<li><p>  沟通与协作能力怎样</p>
 </li>
-<li><p>领导力如何，有没有影响别人促使项目成功的例子</p>
+<li><p>  领导力如何，有没有影响别人促使项目成功的例子</p>
 </li>
-<li><p>积极性如何，有没有在无压力时自我驱动完成事情的实例</p>
+<li><p>  积极性如何，有没有在无压力时自我驱动完成事情的实例</p>
 </li>
 </ul>
 <p>要知道我要什么：</p>
 <ul>
-<li><p>更强的技术能力</p>
+<li><p>  更强的技术能力</p>
 </li>
-<li><p>更高的薪水</p>
+<li><p>  更高的薪水</p>
 </li>
-<li><p>更好的福利（公积金，商业医疗保险，……）</p>
+<li><p>  更好的福利（公积金，商业医疗保险，……）</p>
 </li>
-<li><p>成就感</p>
+<li><p>  成就感</p>
 </li>
-<li><p>被认同</p>
+<li><p>  被认同</p>
 </li>
-<li><p>从头做一个成功的产品</p>
+<li><p>  从头做一个成功的产品</p>
 </li>
-<li><p>大公司镀金的经验</p>
+<li><p>  大公司镀金的经验</p>
 </li>
-<li><p>跟随可能的机会快速发展</p>
+<li><p>  跟随可能的机会快速发展</p>
 </li>
-<li><p>轻松，不加班，可以照顾家人</p>
+<li><p>  轻松，不加班，可以照顾家人</p>
 </li>
-<li><p>管理能力提升的机会</p>
+<li><p>  管理能力提升的机会</p>
 </li>
-<li><p>股权</p>
+<li><p>  股权</p>
 </li>
 </ul>
 <p>要知道我能干什么，这也是很重要的，一定要明了自己的能力边界。比如：</p>
 <ul>
-<li><p>富有钻研精神，能解决技术难题</p>
+<li><p>  富有钻研精神，能解决技术难题</p>
 </li>
-<li><p>有领导力，可以影响、驱动团队</p>
+<li><p>  有领导力，可以影响、驱动团队</p>
 </li>
-<li><p>能把握技术，对技术敏感，善于把控技术方向</p>
+<li><p>  能把握技术，对技术敏感，善于把控技术方向</p>
 </li>
-<li><p>可以快速、高质量编码</p>
+<li><p>  可以快速、高质量编码</p>
 </li>
-<li><p>带团队</p>
+<li><p>  带团队</p>
 </li>
-<li><p>当尖兵</p>
+<li><p>  当尖兵</p>
 </li>
-<li><p>架构设计</p>
+<li><p>  架构设计</p>
 </li>
-<li><p>写出还说得过去的代码</p>
+<li><p>  写出还说得过去的代码</p>
 </li>
-<li><p>会活跃团队气氛</p>
+<li><p>  会活跃团队气氛</p>
 </li>
-<li><p>能写一手好文案</p>
+<li><p>  能写一手好文案</p>
 </li>
-<li><p>懂产品</p>
+<li><p>  懂产品</p>
 </li>
-<li><p>能带人能当导师</p>
+<li><p>  能带人能当导师</p>
 </li>
 </ul>
 <p>很重要的一点是，<strong>我愿意干什么</strong>，对，就是这个。因为你从一个地方离开，一定是这个地方有什么东西你不能接受，那你找新工作时，一定要考虑自己愿意干什么，如果这个考虑不清楚，那才出虎穴又入狼窝的可能性就非常大。</p>
 <p>最后我们还要想<strong>我能失去是什么</strong>，千万别并小看这一点，这是相当重要的。这世上并不存在完美的工作，没有哪个公司、哪个岗位、哪个产品是为你量身定做的。就算你狗屎运，碰见了这么一个机会，那随着时间的轮转和周围环境的变化，曾经你觉得百般熨帖的，也会慢慢出现各种不适。所以，无论何时，痛苦和快乐是伴生的，你必须考虑取舍。在找工作时尤其如此，鱼与熊掌不可兼得，这是必须明白的。</p>
 <p>举几个简单的例子吧：</p>
 <ul>
-<li><p>你老婆怀孕了，需要照顾，那你就可能想找一个轻松不加班的工作，此时薪水要求就不是那么重要了</p>
+<li><p>  你老婆怀孕了，需要照顾，那你就可能想找一个轻松不加班的工作，此时薪水要求就不是那么重要了</p>
 </li>
-<li><p>你身体突然变差了，比如腰椎间盘突出，比如颈椎强直，比如肾虚，比如糖尿病，好吧，此时你肯定应该哪里轻松去哪里</p>
+<li><p>  你身体突然变差了，比如腰椎间盘突出，比如颈椎强直，比如肾虚，比如糖尿病，好吧，此时你肯定应该哪里轻松去哪里</p>
 </li>
-<li><p>你想搏一飞冲天的机会，那可能就要舍去稳定性；你想稳定，那可能就得忍受身边某个人突然某一天扶摇直上九万里</p>
+<li><p>  你想搏一飞冲天的机会，那可能就要舍去稳定性；你想稳定，那可能就得忍受身边某个人突然某一天扶摇直上九万里</p>
 </li>
-<li><p>你想要股权，可能工资就会低一些</p>
+<li><p>  你想要股权，可能工资就会低一些</p>
 </li>
-<li><p>你想得到经理的待遇和福利，就得能抗住经理需要承受的压力</p>
+<li><p>  你想得到经理的待遇和福利，就得能抗住经理需要承受的压力</p>
 </li>
-<li><p>你想去外企而英语不好，那就得自己花钱去培训来提升英语能力</p>
+<li><p>  你想去外企而英语不好，那就得自己花钱去培训来提升英语能力</p>
 </li>
-<li><p>你家在西安人在上海，有一天想离家近点，那就得接受两地的收入差距</p>
+<li><p>  你家在西安人在上海，有一天想离家近点，那就得接受两地的收入差距</p>
 </li>
 </ul>
 <p>类似的太多了，总之我们需要<strong>明白什么对我们是最重要的</strong>，然后就可以在必要的时候，从那些不那么重要的东西里舍弃一些</p>
@@ -388,11 +374,11 @@
 <p>如果你确认了这个公司值得你投递简历，那就需要仔细分析职位描述和任职要求 。职位描述会说明你应聘的这个岗位要做什么，不过很多公司填写的也很空泛，都是行业黑话，有效信息不多。所以我们的重点就是任职要求了。</p>
 <p>我在图上标注了几点，可以针对它优化简历：</p>
 <ul>
-<li><p>会Qt优先</p>
+<li><p>  会Qt优先</p>
 </li>
-<li><p>有Android/iOS平台开发经验者优先</p>
+<li><p>  有Android/iOS平台开发经验者优先</p>
 </li>
-<li><p>较强的学习能力</p>
+<li><p>  较强的学习能力</p>
 </li>
 </ul>
 <p>如果是我的简历，针对”会Qt优先”这一点，我会在简历的<strong>技能与评价</strong>一栏写上”著有《Qt on Android核心编程》和《Qt Quick核心编程》”这句话，那一定会加分。你可以写别的，匹配度越高越好。</p>
@@ -406,13 +392,13 @@
 <p><strong>招聘网站</strong></p>
 <p>其实现在招聘网站很多，下面几个是我觉得还不错的：</p>
 <ul>
-<li><p>CSDN JOB</p>
+<li><p>  CSDN JOB</p>
 </li>
-<li><p>猎聘</p>
+<li><p>  猎聘</p>
 </li>
-<li><p>拉勾</p>
+<li><p>  拉勾</p>
 </li>
-<li><p>智联</p>
+<li><p>  智联</p>
 </li>
 </ul>
 <p>这些网站要么是我在上面投过简历，要么是我在上面发布过招聘信息，简单说一下推荐的理由。</p>
@@ -429,6 +415,31 @@
 ]]></content>
       <tags>
         <tag>面试技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决宿主机无法访问docker内的服务</title>
+    <url>/2020/10/23/%E8%A7%A3%E5%86%B3%E5%AE%BF%E4%B8%BB%E6%9C%BA%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AEdocker%E5%86%85%E7%9A%84%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h1 id="解决宿主机无法访问docker内的服务"><a href="#解决宿主机无法访问docker内的服务" class="headerlink" title="解决宿主机无法访问docker内的服务"></a>解决宿主机无法访问docker内的服务</h1><h2 id="原因：docker网卡地址冲突"><a href="#原因：docker网卡地址冲突" class="headerlink" title="原因：docker网卡地址冲突"></a>原因：docker网卡地址冲突</h2><h2 id="brctl命令安装"><a href="#brctl命令安装" class="headerlink" title="brctl命令安装"></a>brctl命令安装</h2><p> <code>yum install -y bridge-utils</code></p>
+<h2 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br><span class="line">sudo ip link set dev docker0 down         </span><br><span class="line">sudo brctl delbr docker0</span><br><span class="line">sudo iptables -t nat -F POSTROUTING</span><br><span class="line">sudo brctl addbr docker0</span><br><span class="line">sudo ip addr add 172.16.10.1/24 dev docker0</span><br><span class="line">sudo ip link set dev docker0 up 			</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑daemon-json"><a href="#编辑daemon-json" class="headerlink" title="编辑daemon.json"></a>编辑daemon.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</span><br><span class="line">		#daemon.json</span><br><span class="line">			&#123;</span><br><span class="line">    			&quot;bip&quot;: &quot;172.16.10.1&#x2F;24&quot;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启Docker"><a href="#重启Docker" class="headerlink" title="重启Docker"></a>重启Docker</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl  restart  docker</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>进程与线程的简单区分</title>
+    <url>/2020/11/21/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%AE%80%E5%8D%95%E5%8C%BA%E5%88%86/</url>
+    <content><![CDATA[<p>进程与线程的区别：</p>
+<p>进程一个是载入内存的应用，可以把计算机中的正在运行的软件看做成一个进程；<br>线程是进程中的执行单元，一个进程中必定有一个或多个线程；<br>一个进程中如果有多个线程，我们可以将它称之为多线程；</p>
+<p>线程的调度分为 抢占式调度与分时调度；<br>分时调度即 所有线程轮流的使用cpu资源，平均分配每个线程占用cpu的时间；<br>抢占式调度 即 那个线程的优先级高则占用cpu的时间就多，j如果优先级相同，则随机选择线程占用，java 中的多线程 就是抢占式调度；</p>
+]]></content>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
 </search>
