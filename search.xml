@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title></title>
+    <url>/2021/03/26/#%20%E5%8D%87%E7%BA%A7%E7%9B%AE%E6%A0%87/</url>
+    <content><![CDATA[<h1 id="升级目标"><a href="#升级目标" class="headerlink" title="升级目标"></a>升级目标</h1><h2 id="明确："><a href="#明确：" class="headerlink" title="明确："></a>明确：</h2><p>将.NET版本产品采用JAVA语言进行编码重构（.net特色库，.net 门户）；<br>将文化云进行深度业务发掘升级，重写并入文旅融合，模板配置，灵活部署；<br>将数据墙系统进行升级迭代，调整方向，UI数据化，深度挖掘可分析的数据，集成硬件开发人脸识别；<br>互联网方式，整套系统体系架设在公司中心站点服务器中，通过开通账号权限形式，分配给不同地区客户；<br>前端UI均要采用Vue.js 2.0 进行重构升级，至少兼容IE10，PC与H5分离，PC分辨率最低要支持到1024的分辨率（波哥提）；</p>
+<h2 id="讨论："><a href="#讨论：" class="headerlink" title="讨论："></a>讨论：</h2><p>统一体系的多种方式：<br>方式1：整合所有服务至一个系统中，统一的管理后台、统一用户体系、统一权限等；<br>方式2：现活动平台、上业百科等各自独立系统，若要统一，可采用单点登录方式集成为统一管理即为 不同的后台，相同的账号；<br>方式3：整合所有服务至一个系统中，统一的管理后台、统一用户体系、根据产品对应出不同的内置权限，例如文化云权限、数据墙权限；</p>
+<h2 id="补充："><a href="#补充：" class="headerlink" title="补充："></a>补充：</h2><p>//TODO</p>
+<h2 id="修正："><a href="#修正：" class="headerlink" title="修正："></a>修正：</h2><p>//TODO</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Docker部署Nginx</title>
+    <url>/2020/11/21/Docker%E9%83%A8%E7%BD%B2Nginx/</url>
+    <content><![CDATA[<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run \</span><br><span class="line"> -d \</span><br><span class="line"> --name nginx \</span><br><span class="line"> -p 80:80 \</span><br><span class="line"> -v &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;nginx.conf  \</span><br><span class="line"> -v &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html \</span><br><span class="line"> -v &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;log:&#x2F;var&#x2F;log&#x2F;nginx \</span><br><span class="line"> nginx</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen       80;</span><br><span class="line">       server_name  localhost;</span><br><span class="line">       location &#x2F;&#123;</span><br><span class="line">           root   &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;</span><br><span class="line">           index  index.html;</span><br><span class="line">       &#125;</span><br><span class="line">       location &#x2F;api&#x2F; &#123;</span><br><span class="line">           proxy_set_header Host $http_host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;localhost:8888&#x2F;;</span><br><span class="line">       &#125;</span><br><span class="line">       location &#x2F;fileStorage&#x2F; &#123;</span><br><span class="line">           proxy_set_header Host $http_host;</span><br><span class="line">           proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">           proxy_set_header REMOTE-HOST $remote_addr;</span><br><span class="line">           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">           proxy_pass http:&#x2F;&#x2F;localhost:8765&#x2F;;</span><br><span class="line">       &#125;</span><br><span class="line">       error_page   500 502 503 504  &#x2F;50x.html;</span><br><span class="line">       location &#x3D; &#x2F;50x.html &#123;</span><br><span class="line">           root   html;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Jenkins 开始一个新任务构建</title>
     <url>/2020/10/27/Jenkins%E5%BC%80%E5%A7%8B%E4%B8%80%E4%B8%AAtask/</url>
     <content><![CDATA[<h1 id="Jenkins-开始一个新任务构建"><a href="#Jenkins-开始一个新任务构建" class="headerlink" title="Jenkins 开始一个新任务构建"></a>Jenkins 开始一个新任务构建</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>宿主机上准备maven , jdk 环境</p>
@@ -44,6 +69,52 @@
       <tags>
         <tag>linux</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/03/26/%E4%B8%80%E3%80%81%E5%8D%95%E9%80%89%E9%A2%98/</url>
+    <content><![CDATA[<h1 id="一、单选题"><a href="#一、单选题" class="headerlink" title="一、单选题"></a>一、单选题</h1><p>1、下面有关JVM内存，说法错误的是（      ）</p>
+<ul>
+<li><pre><code>程序计数器是一个比较小的内存区域，用于指示当前线程所执行的字节码执行到了第几行，是线程隔离的
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  虚拟机栈描述的是Java方法执行的内存模型，用于存储局部变量，操作数栈，动态链接，方法出口等信息，是线程隔离的</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><pre><code>方法区用于存储JVM加载的类信息、常量、静态变量、以及编译器编译后的代码等数据，是线程隔离的
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  原则上讲，所有的对象都在堆区上分配内存，是线程之间共享的</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</code></pre>
+</li>
+</ul>
+<p>2、 递归过程或函数调用时,处理参数及返回地址,要用一种称为（  ）的数据结构。</p>
+<p>A.队列<br>B.栈<br>C.多维数组<br>D.顺序表</p>
+<h1 id="二、多选题"><a href="#二、多选题" class="headerlink" title="二、多选题"></a>二、多选题</h1><p>1、关于struts项目中的类与MVC模式的对应关系，说法错误的是（       ）</p>
+<ul>
+<li><pre><code>Jsp文件实现视图View的功能
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  ActionServlet这一个类是整个struts项目的控制器</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><pre><code>ActionForm、Action都属于Model部分
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;</span><br><span class="line">  一个struts项目只能有一个Servlet</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+</code></pre>
+</li>
+</ul>
+<h1 id="三、简答题"><a href="#三、简答题" class="headerlink" title="三、简答题"></a>三、简答题</h1><p>并发操作会带来哪些数据不一致性（ ）</p>
+<p>死锁产生的四个必要条件</p>
+<p>线程运行时几种状态转换的过程</p>
+<p>写个的sql查询语句，如有一张表示英语口语练习每个学员的学时的表a，字段有 studentid(学号) name(可重复) grade(年级) hours（学时），找出那些学时高于他们同一年级的平均学时的学生。</p>
+<p>说下你对索引的理解，以及数据库索引的数据结构，为什么会被设计为b树或者B+树</p>
+<p>（加分题）访问频率控制，比如限制一个用户一小时只能访问1000次，超过后被封禁一段时间，考察技术选型，方案设计，并评估方案的优缺点。</p>
+<p>现有一个Web网站的访问速度较慢，你会从哪几个方面进行问题分析解决？</p>
+]]></content>
   </entry>
   <entry>
     <title>写好Java代码的30条经验总结</title>
@@ -102,6 +173,52 @@
       </tags>
   </entry>
   <entry>
+    <title></title>
+    <url>/2021/03/26/%E5%87%86%E5%A4%87%E6%9D%90%E6%96%99/</url>
+    <content><![CDATA[<h1 id="任务概述"><a href="#任务概述" class="headerlink" title="任务概述"></a>任务概述</h1><h2 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h2><p>数据库主从、读写分离</p>
+<p>定时任务</p>
+<p>消息队列</p>
+<p>代码生成</p>
+<p>性能测试</p>
+<h2 id="一、数据库"><a href="#一、数据库" class="headerlink" title="一、数据库"></a>一、数据库</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>Mysql版本: </p>
+<p>Master：47.98.37.219     5.6.48-log MySQL Community Server (GPL)</p>
+<p>Slave：123.57.90.16      5.7.33 MySQL Community Server (GPL)</p>
+<p>两台均为阿里云ECS云服务器，中低配置，测试及生产环境中，mysql版本最好保持一致。 </p>
+<h3 id="主节点配置"><a href="#主节点配置" class="headerlink" title="主节点配置"></a>主节点配置</h3><p>Master 节点中my.conf 配置 ，binlog-do-db 配置了test 、nacos_config、ry-cloud 等3个db，意思就是说开启主从后，只会同步这三个配置的db，</p>
+<p>vim /etc.my.conf   在mysqld 下添加如下脚本；</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_id&#x3D;2</span><br><span class="line">log-bin&#x3D;master-bin</span><br><span class="line">log-bin-index&#x3D;master-bin.index</span><br><span class="line">binlog-do-db &#x3D; test</span><br><span class="line">binlog-do-db &#x3D;nacos_config</span><br><span class="line">binlog-do-db &#x3D;ry-cloud</span><br></pre></td></tr></table></figure>
+
+<p>并使用 <code>systemctl restart mysql</code> 重启mysql服务；</p>
+<p>在Master节点中，使用命令 <code>mysql -uroot -p</code>  登入mysql 终端后，通过命令<code>show master status;</code>查询 Master的状态，同时复制 File  与  Position对应的值。</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20210225112331312.png" alt="image-20210225112331312"></p>
+<p>创建Slave 专用账户，用于其连接Master。</p>
+<h3 id="从节点配置"><a href="#从节点配置" class="headerlink" title="从节点配置"></a>从节点配置</h3><p>Slave：节点中my.conf 配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server-id&#x3D;3</span><br><span class="line">relay-log-index&#x3D;slave-relay-bin.index</span><br><span class="line">relay-log&#x3D;slave-relay-bin</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在Slave 节点中，使用命令 <code>mysql -uroot -p</code>  登入mysql 终端后，使用下面的命令写入Master 节点信息，并开启从库同步，其中MASTER_LOG_FILE的值对应Master 节点中的File 的值，MASTER_LOG_POS的值 对应Position的值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHANGE MASTER TO MASTER_HOST&#x3D;&#39;47.98.37.219&#39;,</span><br><span class="line">MASTER_USER&#x3D;&#39;tb_user&#39;,</span><br><span class="line">MASTER_PASSWORD&#x3D;&#39;90-&#x3D;uiop&#39;,</span><br><span class="line">MASTER_LOG_FILE&#x3D;&#39;master-bin.000008&#39;, </span><br><span class="line">MASTER_LOG_POS&#x3D;120;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在Slave 节点中，使用命令 <code>mysql -uroot -p</code>  登入mysql 终端后，使用命令   <code>show slave status \G</code>    查看Slave 状态 </p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20210225111708402.png" alt="image-20210225111708402"></p>
+<h2 id="效果测试"><a href="#效果测试" class="headerlink" title="效果测试"></a>效果测试</h2><p><img src="C:\Users\sykj\AppData\Roaming\Typora\typora-user-images\image-20210225112715726.png" alt="image-20210225112715726"></p>
+<h1 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h1><h2 id="思考点"><a href="#思考点" class="headerlink" title="思考点"></a>思考点</h2><p>什么是读写分离，什么情况下才会用到读写分离？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">来源网络：</span><br><span class="line">读写分离，基本的原理是让 主数据库处理事务性增、改、删操作（INSERT、UPDATE、DELETE），</span><br><span class="line">从数据库处理SELECT查询操作。</span><br><span class="line">数据库复制被用来把事务性操作导致的变更同步到集群中的从数据库。</span><br><span class="line"> </span><br><span class="line">数据库的“写”（写10000条数据到oracle可能要3分钟）操作是比较耗时的。</span><br><span class="line">但是数据库的“读”（从oracle读10000条数据可能只要5秒钟）。</span><br><span class="line">所以读写分离，解决的是，数据库的写入，影响了查询的效率。</span><br><span class="line"> </span><br><span class="line">数据库不一定要读写分离，如果程序使用数据库较多时，而更新少，查询多的情况下会考虑使用，利用数据库 主从同步 。</span><br><span class="line">可以减少数据库压力，提高性能。</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+
+
+<p>如何实现读写分离？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">解决读写分离的方案有两种：应用层解决和中间件解决。</span><br><span class="line"></span><br><span class="line">应用层解决</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line">多数据源切换方便，由程序自动完成；</span><br><span class="line">不需要引入中间件；</span><br><span class="line">理论上支持任何数据库；</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">由程序员完成，运维参与不到；</span><br><span class="line">不能做到动态增加数据源，并且耦合在代码中不利于拓展与后续维护，一旦进行修改就需要重新编译打包。</span><br><span class="line"></span><br><span class="line">中间件解决</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line">源程序不需要做任何改动就可以实现读写分离；</span><br><span class="line">动态添加数据源不需要重启程序；</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">程序依赖于中间件，会导致切换数据库变得困难；</span><br><span class="line">由中间件做了中转代理，性能有所下降；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">原文链接 https:&#x2F;&#x2F;blog.csdn.net&#x2F;jack85986370&#x2F;article&#x2F;details&#x2F;51559232</span><br></pre></td></tr></table></figure>
+
+
+
+<p>是否一定要用数据库中间件，市面上的中间件该如何选择？</p>
+<h2 id="使用Mycat-实现读写分离"><a href="#使用Mycat-实现读写分离" class="headerlink" title="使用Mycat 实现读写分离"></a>使用Mycat 实现读写分离</h2>]]></content>
+  </entry>
+  <entry>
     <title>当面试官问「你有什么要问我的吗」时，应该问什么？</title>
     <url>/2020/10/19/%E5%BD%93%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%E3%80%8C%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E9%97%AE%E6%88%91%E7%9A%84%E5%90%97%E3%80%8D%E6%97%B6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
     <content><![CDATA[<p>当面试官问「你有什么要问我的吗」时，应该问什么？</p>
@@ -141,6 +258,62 @@
       <tags>
         <tag>面试技巧</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/03/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%BB%E4%BB%8E%E3%80%81%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/</url>
+    <content><![CDATA[<h1 id="数据库主从、读写分离"><a href="#数据库主从、读写分离" class="headerlink" title="数据库主从、读写分离"></a>数据库主从、读写分离</h1><h2 id="主从"><a href="#主从" class="headerlink" title="主从"></a>主从</h2><p>部门现有2台用于测试的阿里云ECS实例，中低配置，目前搭建了一主一从，等后续服务器富余后再考虑调整 多主多从；</p>
+<p>Master：47.98.37.219     5.6.48-log MySQL Community Server (GPL)</p>
+<p>Slave：123.57.90.16      5.7.33 MySQL Community Server (GPL)</p>
+<p>我这里版本并没有保持统一，测试及生产环境中，mysql版本最好保持一致。</p>
+<p>配置步骤</p>
+<h3 id="主节点配置"><a href="#主节点配置" class="headerlink" title="主节点配置"></a>主节点配置</h3><p>Master 节点中my.conf 配置 ，binlog-do-db 配置了test 、ry-cloud 2个db，其一是测试库，其二是微服务demo的业务数据库。</p>
+<p>vim /etc.my.conf   在mysqld 下添加如下脚本；</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server_id&#x3D;2</span><br><span class="line">log-bin&#x3D;master-bin</span><br><span class="line">log-bin-index&#x3D;master-bin.index</span><br><span class="line">binlog-do-db &#x3D; test</span><br><span class="line">binlog-do-db &#x3D;ry-cloud</span><br></pre></td></tr></table></figure>
+
+<p>并使用 <code>systemctl restart mysql</code> 重启mysql服务；</p>
+<p>在Master节点中，使用命令 <code>mysql -uroot -p</code>  登入mysql 终端后，通过命令<code>show master status;</code>查询 Master的状态，同时复制 File  与  Position对应的值。</p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20210225112331312.png" alt="image-20210225112331312"></p>
+<p>创建Slave 专用账户，用于其连接Master。</p>
+<h3 id="从节点配置"><a href="#从节点配置" class="headerlink" title="从节点配置"></a>从节点配置</h3><p>Slave：节点中my.conf 配置</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">server-id&#x3D;3</span><br><span class="line">relay-log-index&#x3D;slave-relay-bin.index</span><br><span class="line">relay-log&#x3D;slave-relay-bin</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在Slave 节点中，使用命令 <code>mysql -uroot -p</code>  登入mysql 终端后，使用下面的命令写入Master 节点信息，并开启从库同步，其中MASTER_LOG_FILE的值对应Master 节点中的File 的值，MASTER_LOG_POS的值 对应Position的值。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">CHANGE MASTER TO MASTER_HOST&#x3D;&#39;47.98.37.219&#39;,</span><br><span class="line">MASTER_USER&#x3D;&#39;tb_user&#39;,</span><br><span class="line">MASTER_PASSWORD&#x3D;&#39;90-&#x3D;uiop&#39;,</span><br><span class="line">MASTER_LOG_FILE&#x3D;&#39;master-bin.000008&#39;, </span><br><span class="line">MASTER_LOG_POS&#x3D;120;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在Slave 节点中，使用命令 <code>mysql -uroot -p</code>  登入mysql 终端后，使用命令   <code>show slave status \G</code>    查看Slave 状态 </p>
+<p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20210225111708402.png" alt="image-20210225111708402"></p>
+<h3 id="主从效果测试"><a href="#主从效果测试" class="headerlink" title="主从效果测试"></a>主从效果测试</h3><p><img src="https://gitee.com/yvv/my-picture-bed/raw/master/img/image-20210225112715726.png" alt="image-20210225112715726"></p>
+<h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><h3 id="思考过的几个问题"><a href="#思考过的几个问题" class="headerlink" title="思考过的几个问题"></a>思考过的几个问题</h3><p>什么是读写分离，什么情况下才会用到读写分离？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">来源网络：</span><br><span class="line">读写分离，基本的原理是让 主数据库处理事务性增、改、删操作（INSERT、UPDATE、DELETE），</span><br><span class="line">从数据库处理SELECT查询操作。</span><br><span class="line">数据库复制被用来把事务性操作导致的变更同步到集群中的从数据库。</span><br><span class="line"> </span><br><span class="line">数据库的“写”（写10000条数据到oracle可能要3分钟）操作是比较耗时的。</span><br><span class="line">但是数据库的“读”（从oracle读10000条数据可能只要5秒钟）。</span><br><span class="line">所以读写分离，解决的是，数据库的写入，影响了查询的效率。</span><br><span class="line"> </span><br><span class="line">数据库不一定要读写分离，如果程序使用数据库较多时，而更新少，查询多的情况下会考虑使用，利用数据库 主从同步 。</span><br><span class="line">可以减少数据库压力，提高性能。</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+<p>如何实现读写分离？</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">解决读写分离的方案有两种：应用层解决和中间件解决。</span><br><span class="line"></span><br><span class="line">应用层解决</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line">多数据源切换方便，由程序自动完成；</span><br><span class="line">不需要引入中间件；</span><br><span class="line">理论上支持任何数据库；</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">由程序员完成，运维参与不到；</span><br><span class="line">不能做到动态增加数据源，并且耦合在代码中不利于拓展与后续维护，一旦进行修改就需要重新编译打包。</span><br><span class="line"></span><br><span class="line">中间件解决</span><br><span class="line"></span><br><span class="line">优点：</span><br><span class="line">源程序不需要做任何改动就可以实现读写分离；</span><br><span class="line">动态添加数据源不需要重启程序；</span><br><span class="line"></span><br><span class="line">缺点：</span><br><span class="line">程序依赖于中间件，会导致切换数据库变得困难；</span><br><span class="line">由中间件做了中转代理，性能有所下降；</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">原文链接 https:&#x2F;&#x2F;blog.csdn.net&#x2F;jack85986370&#x2F;article&#x2F;details&#x2F;51559232</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="选用Mycat-作为中间件"><a href="#选用Mycat-作为中间件" class="headerlink" title="选用Mycat 作为中间件"></a>选用Mycat 作为中间件</h3><p><img src="C:\Users\sykj\AppData\Roaming\Typora\typora-user-images\image-20210226174412775.png" alt="image-20210226174412775"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Cobar属于阿里B2B事业群，始于2008年，在阿里服役3年多，接管3000+个MySQL数据库的schema,集群日处理在线SQL请求50亿次以上。由于Cobar发起人的离职，Cobar停止维护。</span><br><span class="line">Mycat是开源社区在阿里cobar基础上进行二次开发，解决了cobar存在的问题，并且加入了许多新的功能在其中。青出于蓝而胜于蓝。</span><br><span class="line">OneProxy基于MySQL官方的proxy思想利用c进行开发的，OneProxy是一款商业收费的中间件。舍弃了一些功能，专注在性能和稳定性上。</span><br><span class="line">kingshard由小团队用go语言开发，还需要发展，需要不断完善。</span><br><span class="line">Vitess是Youtube生产在使用，架构很复杂。不支持MySQL原生协议。</span><br><span class="line">Atlas是360团队基于mysql proxy改写，功能还需完善，高并发下不稳定。</span><br><span class="line">MaxScale是mariadb（MySQL原作者维护的一个版本） 研发的中间件</span><br><span class="line">MySQLRoute是MySQL官方Oracle公司发布的中间件</span><br></pre></td></tr></table></figure>
+
+
+
+<p>配置方法，先略过，后期再一一补充</p>
+<p>效果如图，程序直接连接mycat,就像连接普通mysql一样。</p>
+<p><img src="C:\Users\sykj\AppData\Roaming\Typora\typora-user-images\image-20210226175743459.png" alt="image-20210226175743459"></p>
+<h1 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h1><h2 id="RocketMQ"><a href="#RocketMQ" class="headerlink" title="RocketMQ"></a>RocketMQ</h2><p><img src="C:\Users\sykj\AppData\Roaming\Typora\typora-user-images\image-20210226180954231.png" alt="image-20210226180954231"></p>
+<h1 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h1><p>XXL-Job</p>
+<h1 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h1><h1 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h1>]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2021/03/26/%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>笔记</p>
+<p><img src="C:\Users\sykj\AppData\Roaming\Typora\typora-user-images\image-20210326104944452.png" alt="image-20210326104944452"></p>
+]]></content>
   </entry>
   <entry>
     <title>给你一次机会面试架构师 你会问什么问题？</title>
@@ -205,6 +378,20 @@
 ]]></content>
       <tags>
         <tag>面试技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决宿主机无法访问docker内的服务</title>
+    <url>/2020/10/23/%E8%A7%A3%E5%86%B3%E5%AE%BF%E4%B8%BB%E6%9C%BA%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AEdocker%E5%86%85%E7%9A%84%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h1 id="解决宿主机无法访问docker内的服务"><a href="#解决宿主机无法访问docker内的服务" class="headerlink" title="解决宿主机无法访问docker内的服务"></a>解决宿主机无法访问docker内的服务</h1><h2 id="原因：docker网卡地址冲突"><a href="#原因：docker网卡地址冲突" class="headerlink" title="原因：docker网卡地址冲突"></a>原因：docker网卡地址冲突</h2><h2 id="brctl命令安装"><a href="#brctl命令安装" class="headerlink" title="brctl命令安装"></a>brctl命令安装</h2><p> <code>yum install -y bridge-utils</code></p>
+<h2 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br><span class="line">sudo ip link set dev docker0 down         </span><br><span class="line">sudo brctl delbr docker0</span><br><span class="line">sudo iptables -t nat -F POSTROUTING</span><br><span class="line">sudo brctl addbr docker0</span><br><span class="line">sudo ip addr add 172.16.10.1/24 dev docker0</span><br><span class="line">sudo ip link set dev docker0 up 			</span><br></pre></td></tr></table></figure>
+
+<h2 id="编辑daemon-json"><a href="#编辑daemon-json" class="headerlink" title="编辑daemon.json"></a>编辑daemon.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</span><br><span class="line">		#daemon.json</span><br><span class="line">			&#123;</span><br><span class="line">    			&quot;bip&quot;: &quot;172.16.10.1&#x2F;24&quot;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启Docker"><a href="#重启Docker" class="headerlink" title="重启Docker"></a>重启Docker</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl  restart  docker</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
@@ -415,20 +602,6 @@
 ]]></content>
       <tags>
         <tag>面试技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决宿主机无法访问docker内的服务</title>
-    <url>/2020/10/23/%E8%A7%A3%E5%86%B3%E5%AE%BF%E4%B8%BB%E6%9C%BA%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AEdocker%E5%86%85%E7%9A%84%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h1 id="解决宿主机无法访问docker内的服务"><a href="#解决宿主机无法访问docker内的服务" class="headerlink" title="解决宿主机无法访问docker内的服务"></a>解决宿主机无法访问docker内的服务</h1><h2 id="原因：docker网卡地址冲突"><a href="#原因：docker网卡地址冲突" class="headerlink" title="原因：docker网卡地址冲突"></a>原因：docker网卡地址冲突</h2><h2 id="brctl命令安装"><a href="#brctl命令安装" class="headerlink" title="brctl命令安装"></a>brctl命令安装</h2><p> <code>yum install -y bridge-utils</code></p>
-<h2 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service docker stop</span><br><span class="line">sudo ip link set dev docker0 down         </span><br><span class="line">sudo brctl delbr docker0</span><br><span class="line">sudo iptables -t nat -F POSTROUTING</span><br><span class="line">sudo brctl addbr docker0</span><br><span class="line">sudo ip addr add 172.16.10.1/24 dev docker0</span><br><span class="line">sudo ip link set dev docker0 up 			</span><br></pre></td></tr></table></figure>
-
-<h2 id="编辑daemon-json"><a href="#编辑daemon-json" class="headerlink" title="编辑daemon.json"></a>编辑daemon.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;docker&#x2F;daemon.json</span><br><span class="line">		#daemon.json</span><br><span class="line">			&#123;</span><br><span class="line">    			&quot;bip&quot;: &quot;172.16.10.1&#x2F;24&quot;</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启Docker"><a href="#重启Docker" class="headerlink" title="重启Docker"></a>重启Docker</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl  restart  docker</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>docker</tag>
       </tags>
   </entry>
   <entry>
