@@ -181,4 +181,50 @@
     <url>/2022/06/21/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[]]></content>
   </entry>
+  <entry>
+    <title>计算机操作系统（一）</title>
+    <url>/2022/06/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p> 操作系统（operating system，简称OS）是管理<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6/5459592">计算机硬件</a>与<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6/12053">软件</a>资源的<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F/3220205">计算机程序</a>。操作系统需要处理如管理与<a href="https://baike.baidu.com/item/%E9%85%8D%E7%BD%AE/2394679">配置</a><a href="https://baike.baidu.com/item/%E5%86%85%E5%AD%98/103614">内存</a>、决定<a href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90/974435">系统资源</a>供需的优先次序、控制<a href="https://baike.baidu.com/item/%E8%BE%93%E5%85%A5%E8%AE%BE%E5%A4%87/10823368">输入设备</a>与<a href="https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87/10823333">输出设备</a>、操作网络与管理<a href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/4827215">文件系统</a>等基本事务。操作系统也提供一个让用户与系统<a href="https://baike.baidu.com/item/%E4%BA%A4%E4%BA%92/6964417">交互</a>操作的界面。</p>
+<p> 我们可以结合<strong>配电脑</strong>的场景进行理解，首先我们需要在网上采购电脑主机箱、主板、电源、CPU、内存条、硬盘、显卡、显示器等等相关<strong>硬件设备</strong>， 然后将硬件组装成为一台完整的主机；组装完成后需要在硬盘中安装操作系统，操作系统有很多种类（Windows、Linux、MacOs、Android、IOS等），一般家用都会安装window；系统安装成功后，打开主机，<strong>此时操作系统会进行一系列的硬件调度</strong>等相关动作；我们可以在操作系统只上安装各种应用程序，这些应用程序都运行在操作系统之上的，那么作为程序开发者，可以通过编程语言对操作系统上的系统接口进行调用，从而实现一系列的高效软件应用。 </p>
+<p>​    操作系统其实最接近硬件，操作系统是计算机系统中最基础的系统软件，其会对软件、硬件进行管理。</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220627132224511.png" alt="image-20220627132224511"></p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220629001759507.png" alt="image-20220629001759507"></p>
+<h1 id="操作系统的功能和目标"><a href="#操作系统的功能和目标" class="headerlink" title="操作系统的功能和目标"></a>操作系统的功能和目标</h1><h2 id="资源管理者"><a href="#资源管理者" class="headerlink" title="资源管理者"></a>资源管理者</h2><p>作为系统资源的管理者、提供了处理机管理、存储器管理、文件管理、设备管理。其目标是为了实现安全、高效；</p>
+<p>用QQ和朋友视频聊天</p>
+<blockquote>
+<ol>
+<li>在硬盘的文件夹中找到QQ安装的文件位置； （对应文件管理）</li>
+<li>双击运行QQ.exe;（程序载入缓存）</li>
+<li>QQ程序运行；（对应进程被处理机（CPU）处理）</li>
+<li>开始和朋友视频聊天（调度摄像头设备分配给进程）</li>
+</ol>
+</blockquote>
+<h2 id="向用户提供服务"><a href="#向用户提供服务" class="headerlink" title="向用户提供服务"></a>向用户提供服务</h2><h3 id="作为用户和计算机硬件之间的接口"><a href="#作为用户和计算机硬件之间的接口" class="headerlink" title="作为用户和计算机硬件之间的接口"></a>作为用户和计算机硬件之间的接口</h3><p>命令接口：允许用户<strong>直接使用</strong>（命令接口又分为 联机命令接口与脱机命令接口）</p>
+<blockquote>
+<p>联机命令接口：用户说一句、系统做一句；（比如cmd命令、bash命令）</p>
+</blockquote>
+<blockquote>
+<p> 脱机命令接口：用户说一堆、系统做一堆（比如shell脚本、bat脚本）</p>
+</blockquote>
+<p>程序接口：允许用户通过程序<strong>间接调用</strong>  由一组<strong>系统调用</strong>组成（程序接口&#x3D;系统调用）</p>
+<blockquote>
+<p>系统调用&#x3D;系统调用命令&#x3D;广义指令</p>
+</blockquote>
+<p>GUI（图形用户界面 Graphical User Interface）：现代操作系统中最流行的图形用户接口</p>
+<blockquote>
+<p>用户可以使用形象的图形界面进行操作、不需要记忆复杂的命令、参数。例如删除一个文件，只用把文件拖拽到回收站</p>
+</blockquote>
+<h2 id="对硬件机器进行扩展"><a href="#对硬件机器进行扩展" class="headerlink" title="对硬件机器进行扩展"></a>对硬件机器进行扩展</h2><h3 id="作为最接近硬件的层次"><a href="#作为最接近硬件的层次" class="headerlink" title="作为最接近硬件的层次"></a>作为最接近硬件的层次</h3><p>没有任何软件支持的计算机称之为 <strong>裸机</strong> ，在裸机上安装操作系统，可以提供资源管理功能和方便用户服务的功能，将裸机改造成为功能更强、使用更便捷的机器。通常把覆盖了软件的机器称之为 <strong>扩展机器</strong>、又称之为<strong>虚拟机</strong></p>
+]]></content>
+      <categories>
+        <category>计算机操作系统</category>
+      </categories>
+      <tags>
+        <tag>处理机管理</tag>
+        <tag>存储器管理</tag>
+        <tag>文件管理</tag>
+        <tag>设备管理</tag>
+        <tag>GUI</tag>
+      </tags>
+  </entry>
 </search>
