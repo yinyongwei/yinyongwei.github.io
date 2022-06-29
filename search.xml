@@ -182,7 +182,7 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>计算机操作系统（一）</title>
+    <title>计算机操作系统（一）概念功能和目标</title>
     <url>/2022/06/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p> 操作系统（operating system，简称OS）是管理<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6/5459592">计算机硬件</a>与<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6/12053">软件</a>资源的<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F/3220205">计算机程序</a>。操作系统需要处理如管理与<a href="https://baike.baidu.com/item/%E9%85%8D%E7%BD%AE/2394679">配置</a><a href="https://baike.baidu.com/item/%E5%86%85%E5%AD%98/103614">内存</a>、决定<a href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90/974435">系统资源</a>供需的优先次序、控制<a href="https://baike.baidu.com/item/%E8%BE%93%E5%85%A5%E8%AE%BE%E5%A4%87/10823368">输入设备</a>与<a href="https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87/10823333">输出设备</a>、操作网络与管理<a href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/4827215">文件系统</a>等基本事务。操作系统也提供一个让用户与系统<a href="https://baike.baidu.com/item/%E4%BA%A4%E4%BA%92/6964417">交互</a>操作的界面。</p>
 <p> 我们可以结合<strong>配电脑</strong>的场景进行理解，首先我们需要在网上采购电脑主机箱、主板、电源、CPU、内存条、硬盘、显卡、显示器等等相关<strong>硬件设备</strong>， 然后将硬件组装成为一台完整的主机；组装完成后需要在硬盘中安装操作系统，操作系统有很多种类（Windows、Linux、MacOs、Android、IOS等），一般家用都会安装window；系统安装成功后，打开主机，<strong>此时操作系统会进行一系列的硬件调度</strong>等相关动作；我们可以在操作系统只上安装各种应用程序，这些应用程序都运行在操作系统之上的，那么作为程序开发者，可以通过编程语言对操作系统上的系统接口进行调用，从而实现一系列的高效软件应用。 </p>
@@ -225,6 +225,55 @@
         <tag>文件管理</tag>
         <tag>设备管理</tag>
         <tag>GUI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计算机操作系统（二）操作系统的特征</title>
+    <url>/2022/06/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>操作系统的四个特征，分别是并发，共享、虚拟、和异步，其中<strong>并发与共享</strong>是两个最基本的特征，二者互为存在条件。</p>
+<h2 id="并发-Concurrence"><a href="#并发-Concurrence" class="headerlink" title="并发 Concurrence"></a>并发 <strong>Concurrence</strong></h2><p>指的是<strong>两个或多个事件在同一时间的间隔内发生</strong>。这些事件在<strong>宏观上是同时发生</strong>的，但是在<strong>微观上却是交替发生</strong>的。操作系统的并发性指的是计算机系统中同时存在着多个运行的程序。一个单核处理器 同一时刻只能执行一个程序，因此操作系统会协调调度多个程序之间的交替执行，操作系统就是伴随着 <strong>多道程序技术</strong> 而出现的，因此操作系统和程序并发是一起诞生的，且并发性对操作系统而言是必不可少的。</p>
+<h3 id="并发vs并行"><a href="#并发vs并行" class="headerlink" title="并发vs并行"></a>并发vs并行</h3><p>并发：在一台处理器上同时处理多个任务；</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220629144227210.png" alt="image-20220629144227210"></p>
+<p>并行：在多台处理器上同时处理多个任务；</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220629144145001.png" alt="image-20220629144145001"></p>
+<p>并发是交替执行、并行是同时执行，然而同时的概念是，并发是从逻辑上是同时，但是并行在物理上是同时。</p>
+<ol>
+<li>并发针对单核CPU，无法并行；</li>
+<li>并行针对多核CPU，并发和并行都可能发生；</li>
+<li>都是提高 CPU 处理任务能力的重要手段。</li>
+</ol>
+<h2 id="共享-Sharing"><a href="#共享-Sharing" class="headerlink" title="共享 Sharing"></a>共享 Sharing</h2><p>即资源共享，是指计算机中的资源可以供内存中的多个并发执行的进程共同使用。</p>
+<p>两种资源共享的方式：互斥共享方式、同时共享方式；</p>
+<p>互斥共享方式：系统中的某些资源虽然可以提供给多个进程使用，但是在一个时间段内之允许一个进程访问该资源；</p>
+<blockquote>
+<p>使用QQ和微信视频聊天，同一时间段内摄像头只能分配给其中一个进程。</p>
+</blockquote>
+<p>同时共享方式：系统中的某些资源，允许同一时间段内由多个进程 <strong>同时</strong>对他们进行访问。（所谓同时，往往是宏观上的，在微观上这些进程可能是交替的对资源进行访问的，即<strong>分时共享</strong>）</p>
+<blockquote>
+<p>使用QQ发送文件A、同时使用微信发送文件B，从宏观上看，连边都在同时读取与发送文件，说明两个进程都在访问硬盘上的资源，从微观上看，两个进程是交替着访问硬盘的。</p>
+</blockquote>
+<h3 id="并发与共享的关系"><a href="#并发与共享的关系" class="headerlink" title="并发与共享的关系"></a>并发与共享的关系</h3><p>并发和共享是操作系统的两个最基本的特性，它们又是互为存在条件。一方面资源共享是以程序（进程）的并发性执行为条件的，若系统不允许程序并发执行，自然不存在资源共享问题。另一方面若系统不能对资源共享实施有效管理，则也必将影响到程序并发执行。</p>
+<h2 id="虚拟"><a href="#虚拟" class="headerlink" title="虚拟"></a>虚拟</h2><p>是指把一个物理上的实体变成若干个逻辑上的对应物。物理实体是实际存在的，而逻辑上的对应物是用户感受到的。虚拟技术包含空分复用技术（如虚拟存储器）和时分复用技术（如虚拟处理器）。</p>
+<h3 id="空分复用技术"><a href="#空分复用技术" class="headerlink" title="空分复用技术"></a>空分复用技术</h3><blockquote>
+<p>在一台仅有4GB运存的电脑上，运行着GTA5（需要4GB）、腾讯QQ（比如需要256MB）、微信（比如需要256MB）、网易云音乐（比如需要256MB），电脑仍然可以同时将这些软件 同时运行。这就是用到了虚拟存储技术，实际主机只有4GB运存，但是在用户看来运行的程序所占用的内存似乎远远大于了4GB。</p>
+</blockquote>
+<h3 id="时分复用技术"><a href="#时分复用技术" class="headerlink" title="时分复用技术"></a>时分复用技术</h3><blockquote>
+<p>在一台单核的电脑上，“同时” 运行着腾讯QQ、Chrome、网易云音乐、迅雷等软件，单核CPU处理器下的电脑能够同时运行这么多程序，其实这里使用了时分复用技术，在微观上看，是把一整块时间分成了很多分时间片，在微小时间段内进行交替作业。</p>
+</blockquote>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><p>是指在多道程序环境下，运行多个程序并发执行，但是由于资源有限，进程的执行不是一贯到底的。而是走走停停，以不可预知的速度向前推进。这就是进程的异步行。</p>
+<p>操作系统的异步性体现在三个方面：</p>
+<p>一是进程的异步性，进程以人们不可预知的速度向 前推进。</p>
+<p>二是程序的不可再现性，即程序执行的结果有时是不确定的。</p>
+<p>三是程序执行时间的不可预知性，即每个程序何时执行，执行顺序以及完成时间是不确定的。</p>
+]]></content>
+      <categories>
+        <category>计算机操作系统</category>
+      </categories>
+      <tags>
+        <tag>并发</tag>
+        <tag>共享</tag>
+        <tag>虚拟</tag>
+        <tag>异步</tag>
       </tags>
   </entry>
 </search>
