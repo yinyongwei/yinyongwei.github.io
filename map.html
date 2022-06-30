@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>苏州三日游途径景点图</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<style>
+			body,
+			html,
+			#container {
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				font-family: "微软雅黑";
+			}
+
+			ul li {
+				list-style: none;
+			}
+
+			.drawing-panel {
+				z-index: 999;
+				position: fixed;
+				bottom: 3.5rem;
+				margin-left: 3rem;
+				padding: 1rem 1rem;
+				border-radius: .25rem;
+				background-color: #fff;
+				box-shadow: 0 2px 6px 0 rgba(27, 142, 236, 0.5);
+			}
+
+			.btn {
+				width: 90px;
+				height: 30px;
+				float: left;
+				background-color: #fff;
+				color: rgba(27, 142, 236, 1);
+				font-size: 14px;
+				border: 1px solid rgba(27, 142, 236, 1);
+				border-radius: 5px;
+				margin: 0 5px;
+				text-align: center;
+				line-height: 30px;
+			}
+
+			.btn:hover {
+				background-color: rgba(27, 142, 236, 0.8);
+				color: #fff;
+			}
+		</style>
+		<script src="https://mapopen.bj.bcebos.com/github/BMapGLLib/TrackAnimation/src/TrackAnimation.min.js"></script>
+		<script src="https://api.map.baidu.com/api?type=webgl&v=1.0&ak=kZylHlWwIQTqwzMBMYhbelGEp1vxogfg"></script>
+	</head>
+	<body>
+		<div id="container"></div>
+		<ul class="drawing-panel" style="z-index: 99;">
+			<li class="btn" onclick="start()">开始</li>
+			<li class="btn" onclick="pauseAni()">暂停</li>
+			<li class="btn" onclick="continueAni()">继续</li>
+		</ul>
+	</body>
+</html>
+
+<script>
+	var bmap = new BMapGL.Map("container");
+	// bmap.centerAndZoom(new BMapGL.Point(120.610817, 31.329502), 17);
+	bmap.centerAndZoom("苏州市", 12);
+	bmap.enableScrollWheelZoom(true);
+
+
+	var mapList = [
+		// 火车站
+		{
+			'name': '苏州火车站',
+			'desc': '我们从这里来，也这里走',
+			'lng': 120.610817,
+			'lat': 31.335936
+		},
+		// 拙政园
+		{
+			'name': '苏州园林拙政园',
+			'desc': '拙政园',
+			'lng': 120.628761,
+			'lat': 31.324179
+		},
+		// 苏州博物馆
+		{
+			'name': '博物馆',
+			'desc': '苏州博物馆',
+			'lng': 120.627625,
+			'lat': 31.323143
+		},
+		// 苏州狮子林景区
+		{
+			'name': '苏州狮子林景区',
+			'desc': '苏州狮子林景区',
+			'lng': 120.629028,
+			'lat': 31.321077
+		},
+		// 苏州观前街
+		{
+			'name': '苏州观前街',
+			'desc': '苏州观前街',
+			'lng': 120.625458,
+			'lat': 31.310452
+		},
+		// 苏州寒山寺
+		{
+			'name': '苏州寒山寺',
+			'desc': '苏州寒山寺',
+			'lng': 120.63132,
+			'lat': 31.30227
+		},
+		// 苏州虎丘山风景区
+		{
+			'name': '苏州虎丘山风景区',
+			'desc': '苏州虎丘山风景区',
+			'lng': 120.580612,
+			'lat': 31.335369
+		},
+		// 七里山塘
+		{
+			'name': '七里山塘',
+			'desc': '七里山塘',
+			'lng': 120.601814,
+			'lat': 31.316095
+		}
+	];
+
+	// 创建标记点
+	for (var i = 0; i < mapList.length; i++) {
+		// 在地图上添加点标记
+		var point = new BMapGL.Point(mapList[i].lng, mapList[i].lat);
+		bmap.addOverlay(new BMapGL.Marker(point));
+
+
+
+		var opts = {
+			position: point, // 指定文本标注所在的地理位置
+			// offset: new BMapGL.Size(30, -30) // 设置文本偏移量
+		};
+		// 创建文本标注对象
+		var label = new BMapGL.Label(mapList[i].name, opts);
+		// 自定义文本标注样式
+		label.setStyle({
+			color: 'rgba(246, 92, 234, 1.0)',
+			borderRadius: '5px',
+			borderColor: '#ccc',
+			padding: '10px',
+			fontSize: '16px',
+			height: '30px',
+			lineHeight: '30px',
+			fontFamily: '微软雅黑'
+		});
+		bmap.addOverlay(label);
+	}
+
+
+
+
+
+
+
+
+
+
+	// 动画轨迹
+	var point = [];
+	for (var i = 0; i < mapList.length; i++) {
+		point.push(new BMapGL.Point(mapList[i].lng, mapList[i].lat));
+	}
+	
+	var pl = new BMapGL.Polyline(point);
+	// setTimeout('start()', 3000);
+	trackAni = new BMapGLLib.TrackAnimation(bmap, pl, {
+		overallView: true,
+		tilt: 30,
+		duration: 20000,
+		delay: 300
+	});
+
+
+
+	function start() {
+		trackAni.start();
+	}
+
+	function pauseAni() {
+		trackAni.pause();
+	}
+
+	function continueAni() {
+		trackAni.continue();
+	}
+</script>
