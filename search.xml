@@ -201,20 +201,49 @@
       </categories>
   </entry>
   <entry>
-    <title>OS的发展与分类</title>
-    <url>/2022/06/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/</url>
-    <content><![CDATA[]]></content>
+    <title>计算机操作系统（一）概念功能和目标</title>
+    <url>/2022/06/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p> 操作系统（operating system，简称OS）是管理<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6/5459592">计算机硬件</a>与<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6/12053">软件</a>资源的<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F/3220205">计算机程序</a>。操作系统需要处理如管理与<a href="https://baike.baidu.com/item/%E9%85%8D%E7%BD%AE/2394679">配置</a><a href="https://baike.baidu.com/item/%E5%86%85%E5%AD%98/103614">内存</a>、决定<a href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90/974435">系统资源</a>供需的优先次序、控制<a href="https://baike.baidu.com/item/%E8%BE%93%E5%85%A5%E8%AE%BE%E5%A4%87/10823368">输入设备</a>与<a href="https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87/10823333">输出设备</a>、操作网络与管理<a href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/4827215">文件系统</a>等基本事务。操作系统也提供一个让用户与系统<a href="https://baike.baidu.com/item/%E4%BA%A4%E4%BA%92/6964417">交互</a>操作的界面。</p>
+<p> 我们可以结合<strong>配电脑</strong>的场景进行理解，首先我们需要在网上采购电脑主机箱、主板、电源、CPU、内存条、硬盘、显卡、显示器等等相关<strong>硬件设备</strong>， 然后将硬件组装成为一台完整的主机；组装完成后需要在硬盘中安装操作系统，操作系统有很多种类（Windows、Linux、MacOs、Android、IOS等），一般家用都会安装window；系统安装成功后，打开主机，<strong>此时操作系统会进行一系列的硬件调度</strong>等相关动作；我们可以在操作系统只上安装各种应用程序，这些应用程序都运行在操作系统之上的，那么作为程序开发者，可以通过编程语言对操作系统上的系统接口进行调用，从而实现一系列的高效软件应用。 </p>
+<p>​    操作系统其实最接近硬件，操作系统是计算机系统中最基础的系统软件，其会对软件、硬件进行管理。</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220627132224511.png" alt="image-20220627132224511"></p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220629001759507.png" alt="image-20220629001759507"></p>
+<h1 id="操作系统的功能和目标"><a href="#操作系统的功能和目标" class="headerlink" title="操作系统的功能和目标"></a>操作系统的功能和目标</h1><h2 id="资源管理者"><a href="#资源管理者" class="headerlink" title="资源管理者"></a>资源管理者</h2><p>作为系统资源的管理者、提供了处理机管理、存储器管理、文件管理、设备管理。其目标是为了实现安全、高效；</p>
+<p>用QQ和朋友视频聊天</p>
+<blockquote>
+<ol>
+<li>在硬盘的文件夹中找到QQ安装的文件位置； （对应文件管理）</li>
+<li>双击运行QQ.exe;（程序载入缓存）</li>
+<li>QQ程序运行；（对应进程被处理机（CPU）处理）</li>
+<li>开始和朋友视频聊天（调度摄像头设备分配给进程）</li>
+</ol>
+</blockquote>
+<h2 id="向用户提供服务"><a href="#向用户提供服务" class="headerlink" title="向用户提供服务"></a>向用户提供服务</h2><h3 id="作为用户和计算机硬件之间的接口"><a href="#作为用户和计算机硬件之间的接口" class="headerlink" title="作为用户和计算机硬件之间的接口"></a>作为用户和计算机硬件之间的接口</h3><p>命令接口：允许用户<strong>直接使用</strong>（命令接口又分为 联机命令接口与脱机命令接口）</p>
+<blockquote>
+<p>联机命令接口：用户说一句、系统做一句；（比如cmd命令、bash命令）</p>
+</blockquote>
+<blockquote>
+<p> 脱机命令接口：用户说一堆、系统做一堆（比如shell脚本、bat脚本）</p>
+</blockquote>
+<p>程序接口：允许用户通过程序<strong>间接调用</strong>  由一组<strong>系统调用</strong>组成（程序接口&#x3D;系统调用）</p>
+<blockquote>
+<p>系统调用&#x3D;系统调用命令&#x3D;广义指令</p>
+</blockquote>
+<p>GUI（图形用户界面 Graphical User Interface）：现代操作系统中最流行的图形用户接口</p>
+<blockquote>
+<p>用户可以使用形象的图形界面进行操作、不需要记忆复杂的命令、参数。例如删除一个文件，只用把文件拖拽到回收站</p>
+</blockquote>
+<h2 id="对硬件机器进行扩展"><a href="#对硬件机器进行扩展" class="headerlink" title="对硬件机器进行扩展"></a>对硬件机器进行扩展</h2><h3 id="作为最接近硬件的层次"><a href="#作为最接近硬件的层次" class="headerlink" title="作为最接近硬件的层次"></a>作为最接近硬件的层次</h3><p>没有任何软件支持的计算机称之为 <strong>裸机</strong> ，在裸机上安装操作系统，可以提供资源管理功能和方便用户服务的功能，将裸机改造成为功能更强、使用更便捷的机器。通常把覆盖了软件的机器称之为 <strong>扩展机器</strong>、又称之为<strong>虚拟机</strong></p>
+]]></content>
       <categories>
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>手工操作阶段</tag>
-        <tag>批处理阶段</tag>
-        <tag>分时操作系统</tag>
-        <tag>实时操作系统</tag>
-        <tag>网络操作系统</tag>
-        <tag>分布式操作系统</tag>
-        <tag>个人计算机操作系统</tag>
+        <tag>处理机管理</tag>
+        <tag>存储器管理</tag>
+        <tag>文件管理</tag>
+        <tag>设备管理</tag>
+        <tag>GUI</tag>
       </tags>
   </entry>
   <entry>
@@ -267,49 +296,44 @@
       </tags>
   </entry>
   <entry>
-    <title>计算机操作系统（一）概念功能和目标</title>
-    <url>/2022/06/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%80%EF%BC%89/</url>
-    <content><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p> 操作系统（operating system，简称OS）是管理<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6/5459592">计算机硬件</a>与<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6/12053">软件</a>资源的<a href="https://baike.baidu.com/item/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F/3220205">计算机程序</a>。操作系统需要处理如管理与<a href="https://baike.baidu.com/item/%E9%85%8D%E7%BD%AE/2394679">配置</a><a href="https://baike.baidu.com/item/%E5%86%85%E5%AD%98/103614">内存</a>、决定<a href="https://baike.baidu.com/item/%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90/974435">系统资源</a>供需的优先次序、控制<a href="https://baike.baidu.com/item/%E8%BE%93%E5%85%A5%E8%AE%BE%E5%A4%87/10823368">输入设备</a>与<a href="https://baike.baidu.com/item/%E8%BE%93%E5%87%BA%E8%AE%BE%E5%A4%87/10823333">输出设备</a>、操作网络与管理<a href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/4827215">文件系统</a>等基本事务。操作系统也提供一个让用户与系统<a href="https://baike.baidu.com/item/%E4%BA%A4%E4%BA%92/6964417">交互</a>操作的界面。</p>
-<p> 我们可以结合<strong>配电脑</strong>的场景进行理解，首先我们需要在网上采购电脑主机箱、主板、电源、CPU、内存条、硬盘、显卡、显示器等等相关<strong>硬件设备</strong>， 然后将硬件组装成为一台完整的主机；组装完成后需要在硬盘中安装操作系统，操作系统有很多种类（Windows、Linux、MacOs、Android、IOS等），一般家用都会安装window；系统安装成功后，打开主机，<strong>此时操作系统会进行一系列的硬件调度</strong>等相关动作；我们可以在操作系统只上安装各种应用程序，这些应用程序都运行在操作系统之上的，那么作为程序开发者，可以通过编程语言对操作系统上的系统接口进行调用，从而实现一系列的高效软件应用。 </p>
-<p>​    操作系统其实最接近硬件，操作系统是计算机系统中最基础的系统软件，其会对软件、硬件进行管理。</p>
-<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220627132224511.png" alt="image-20220627132224511"></p>
-<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220629001759507.png" alt="image-20220629001759507"></p>
-<h1 id="操作系统的功能和目标"><a href="#操作系统的功能和目标" class="headerlink" title="操作系统的功能和目标"></a>操作系统的功能和目标</h1><h2 id="资源管理者"><a href="#资源管理者" class="headerlink" title="资源管理者"></a>资源管理者</h2><p>作为系统资源的管理者、提供了处理机管理、存储器管理、文件管理、设备管理。其目标是为了实现安全、高效；</p>
-<p>用QQ和朋友视频聊天</p>
+    <title>计算机操作系统（三） OS的发展与分类</title>
+    <url>/2022/06/30/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%89%EF%BC%89/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>操作系统发展阶段主要可以划分为： <mark class="hl-label blue">手动操作阶段</mark> 、 <mark class="hl-label blue">批处理阶段</mark> （单道批处理系统、多道批处理系统&lt;操作系统开始出现&gt;）、<mark class="hl-label blue">分时操作系统</mark> 、<mark class="hl-label blue">实时操作系统</mark> 、<mark class="hl-label blue">网络操作系统</mark> 、<mark class="hl-label blue">分布式操作系统</mark> 、<mark class="hl-label blue">个人计算机操作系统</mark> </p>
+<h1 id="手工操作阶段"><a href="#手工操作阶段" class="headerlink" title="手工操作阶段"></a>手工操作阶段</h1><p>最早时期的编程方式，程序员需要通过打孔机在纸片上进行打孔编程，基于二进制编码方式，孔为1、非孔为0。编程结束后打孔机会将任务流转到处理器进行计算得出结果，再将结果通过打孔机进行输出。 整个阶段CPU会空出大量的空闲时间、等待输入输出的完成。在同一时刻，该计算机只能服务于同一个人，其他人需要使用就必须等待上一个用户使用完毕。</p>
+<p><strong>主要缺点：</strong> 人机速度矛盾，导致机器资源利用率低下，用户会独占机器。</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220702164502049.png" alt="image-20220702164502049"></p>
+<h1 id="批处理阶段"><a href="#批处理阶段" class="headerlink" title="批处理阶段"></a>批处理阶段</h1><h2 id="单道批处理系统"><a href="#单道批处理系统" class="headerlink" title="单道批处理系统"></a>单道批处理系统</h2><p>在单道批处理系统中，引入了脱机输入&#x2F;输出技术（用磁带完成），并由监督程序（操作系统的雏形）来负责控制作业进行输入、输出。</p>
+<p>程序员们使用打孔机将程序编码完成，此后通过外围机器将纸片上的程序转换到磁带上，再将磁带交给处理器，处理器运算结束后，再将结果输出到磁带中。</p>
+<p>在这个阶段，解决了上一个阶段的缺点。缓解了一定程度的人机速度矛盾，资源利用率有所提升。</p>
+<p><strong>缺点：</strong> 在内存中仅能有一道程序运行，只有改程序运行结束之后，才能够执行下一道程序。此时CPU仍然有大量的时间是空闲的等待I&#x2F;O操作完成，资源利用率依然不高。</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220702165732522.png" alt="image-20220702165732522"></p>
+<h2 id="多道批处理系统"><a href="#多道批处理系统" class="headerlink" title="多道批处理系统"></a>多道批处理系统</h2><p>多道程序<strong>并发</strong>执行，<strong>共享</strong>计算机资源。资源利用率大幅提升，CPU和其他资源保持“忙碌”状态，系统吞吐量增大。<br><strong>主要缺点</strong>：用户响应时间长，没有人机交互功能（用户提交自己的作业之后就只能等待计算机处理完成， 中间不能控制自己的作业执行)</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220702170618002.png" alt="image-20220702170618002"></p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220702170853647.png" alt="image-20220702170853647"></p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/image-20220702171044361.png" alt="image-20220702171044361"></p>
+<h1 id="分时操作系统"><a href="#分时操作系统" class="headerlink" title="分时操作系统"></a>分时操作系统</h1><p>计算机以<strong>时间片</strong>为单位轮<strong>流为</strong>各个用户&#x2F;作业服务，各个用户可通过终端与计算机进行交互。</p>
+<p>用户请求可以被即时响应，<strong>解决了人机交互问题</strong>。</p>
+<p>允许多个用户同时使用一台计算机，并且用 户对计算机的操作相互独立，感受不到别人的存在。</p>
+<p><strong>主要缺点：</strong> <strong>不能够处理一些紧急任务</strong>。操作系统对每个用户&#x2F;作业都是完全公平的。循环的为每个用户&#x2F;作业服务一个时间片，不区分任务紧急性。</p>
+<p><img src="https://cdn.yinyongwei.cn/uPic/%E5%88%86%E6%97%B6%E6%93%8D%E4%BD%9C.gif" alt="分时操作"></p>
+<h1 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h1><p>实时操作系统大致可分为两种：</p>
 <blockquote>
-<ol>
-<li>在硬盘的文件夹中找到QQ安装的文件位置； （对应文件管理）</li>
-<li>双击运行QQ.exe;（程序载入缓存）</li>
-<li>QQ程序运行；（对应进程被处理机（CPU）处理）</li>
-<li>开始和朋友视频聊天（调度摄像头设备分配给进程）</li>
-</ol>
+<p>硬实时操作系统：必须在绝对严格的规定时间内完成处理，比如自动驾驶、导弹控制系统等。要求硬实时性</p>
+<p>软实时操作系统：能够接受偶尔违反时间规定，比如12306火车订票系统。</p>
 </blockquote>
-<h2 id="向用户提供服务"><a href="#向用户提供服务" class="headerlink" title="向用户提供服务"></a>向用户提供服务</h2><h3 id="作为用户和计算机硬件之间的接口"><a href="#作为用户和计算机硬件之间的接口" class="headerlink" title="作为用户和计算机硬件之间的接口"></a>作为用户和计算机硬件之间的接口</h3><p>命令接口：允许用户<strong>直接使用</strong>（命令接口又分为 联机命令接口与脱机命令接口）</p>
-<blockquote>
-<p>联机命令接口：用户说一句、系统做一句；（比如cmd命令、bash命令）</p>
-</blockquote>
-<blockquote>
-<p> 脱机命令接口：用户说一堆、系统做一堆（比如shell脚本、bat脚本）</p>
-</blockquote>
-<p>程序接口：允许用户通过程序<strong>间接调用</strong>  由一组<strong>系统调用</strong>组成（程序接口&#x3D;系统调用）</p>
-<blockquote>
-<p>系统调用&#x3D;系统调用命令&#x3D;广义指令</p>
-</blockquote>
-<p>GUI（图形用户界面 Graphical User Interface）：现代操作系统中最流行的图形用户接口</p>
-<blockquote>
-<p>用户可以使用形象的图形界面进行操作、不需要记忆复杂的命令、参数。例如删除一个文件，只用把文件拖拽到回收站</p>
-</blockquote>
-<h2 id="对硬件机器进行扩展"><a href="#对硬件机器进行扩展" class="headerlink" title="对硬件机器进行扩展"></a>对硬件机器进行扩展</h2><h3 id="作为最接近硬件的层次"><a href="#作为最接近硬件的层次" class="headerlink" title="作为最接近硬件的层次"></a>作为最接近硬件的层次</h3><p>没有任何软件支持的计算机称之为 <strong>裸机</strong> ，在裸机上安装操作系统，可以提供资源管理功能和方便用户服务的功能，将裸机改造成为功能更强、使用更便捷的机器。通常把覆盖了软件的机器称之为 <strong>扩展机器</strong>、又称之为<strong>虚拟机</strong></p>
+<p>在实时操作系统的控制下，计算机系统接收到外部信号后及时进行处理，并且要求在严格的时间限制内处理完成事件。 </p>
+<p>能够优先响应一些紧急任务，某些任务不需要时间片排队。</p>
+<p>实时操作系统的主要特点及时 及时性、可靠性。</p>
+<h1 id="网络操作系统"><a href="#网络操作系统" class="headerlink" title="网络操作系统"></a>网络操作系统</h1><p>伴随着计算机网络的发展而诞生的，能把网络中各个计算机有机地结合起来，实现数据传 送等功能，实现网络中各种资源的共享（如文件共享）和各台计算机之间的通信。（如：Windows NT就是一种典型的网络操作系统，网站服务器就可以使用)。</p>
+<h1 id="分布式操作系统"><a href="#分布式操作系统" class="headerlink" title="分布式操作系统"></a>分布式操作系统</h1><p>主要特点是分布性和并行性。</p>
+<p>系统中的各台计算机地位相同，任何工作都可以分布在这些 计算机上，由它们并行、协同完成这个任务。</p>
+<h1 id="个人计算机操作系统"><a href="#个人计算机操作系统" class="headerlink" title="个人计算机操作系统"></a>个人计算机操作系统</h1><p>方便个人使用。Window、MacOS等</p>
 ]]></content>
       <categories>
         <category>计算机操作系统</category>
       </categories>
       <tags>
-        <tag>处理机管理</tag>
-        <tag>存储器管理</tag>
-        <tag>文件管理</tag>
-        <tag>设备管理</tag>
-        <tag>GUI</tag>
+        <tag>计算机操作系统</tag>
       </tags>
   </entry>
 </search>
