@@ -98,65 +98,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL单表索引优化</title>
-    <url>/2022/08/09/MySQL%E5%8D%95%E8%A1%A8%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `article` (</span><br><span class="line">  `id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `author_id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `category_id` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `views` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `comments` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `title` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `content` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`),</span><br><span class="line">  KEY `idx_cv` (`category_id`,`views`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">4</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`article` (`id`, `author_id`, `category_id`, `views`, `comments`, `title`, `content`) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`article` (`id`, `author_id`, `category_id`, `views`, `comments`, `title`, `content`) <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`article` (`id`, `author_id`, `category_id`, `views`, `comments`, `title`, `content`) <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>通过上述SQL我们可以建立一个article 文章表，以及少量的数据，本案例根据article表进行索引优化案例分析；</p>
-<p>要求：查询出 article 文章表中 category_id &#x3D;1 且 comments &gt;1 且views 浏览量最多的数据。</p>
-<p>SQL语句：</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> id,author_id <span class="keyword">from</span> article <span class="keyword">where</span> category_id <span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> comments <span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> views <span class="keyword">desc</span> limit <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134001934.png" alt="image-20220809134001934"></p>
-<p>未建索引之前 </p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> index <span class="keyword">from</span> article;</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134156661.png" alt="image-20220809134156661"></p>
-<p>根据Explain 关键字进行分析:</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">explain <span class="keyword">select</span> id,author_id <span class="keyword">from</span> article <span class="keyword">where</span> category_id <span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> comments <span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> views <span class="keyword">desc</span> limit <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-
-<p>根据Explain关键字得出查询结论，本次查询首先属于全表扫描，其次产生了文件排序，可想而知，如果数据量大的情况下，这个查询的效率是非常low的。</p>
-<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134340148.png" alt="image-20220809134340148"></p>
-<p>我们开始建立索引，根据MySQL索引优化的建议来说，where后面可能会用到的字段，就需要建立索引；</p>
-<p>开始第一次建立索引</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> index idx_ccv <span class="keyword">on</span> article (category_id,comments,views);</span><br><span class="line"><span class="keyword">show</span> index <span class="keyword">from</span> article;</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134949889.png" alt="image-20220809134949889"></p>
-<p>然后再进行一次Explain的查询分析，如下图所示，我们可以看到 type 从ALL 变成了 range，我们解决了全表扫描的问题，并且此次查询命中了索引 idx_ccv ，但是 Using filesort 文件排序的问题还是没有解决。</p>
-<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809135107568.png" alt="image-20220809135107568"></p>
-<p>我们已经建立了索引，为什么没有效果？ </p>
-<blockquote>
-<p>原因是按照Btree索引的工作原理来讲，此次查询是先排序 category_id ,再排序 comments，如果遇到相同的comments 才再排序 views。当comments字段在联合素引里处于中间位置时，因为 comments&gt;1条件是一个范围值（所谓range)，MySQL无法利用素引再对后面的views部分进行检素，即range类型查询字段后面的素引无效。</p>
-</blockquote>
-<p>说明此次索引建立并不合适；</p>
-<p>第二次建立索引，我们先删除第一次建立的索引，再创建新的索引；	<img src="http://cdn.yinyongwei.cn/uPic/image-20220809135438491.png" alt="image-20220809135438491"></p>
-<p>在进行一次Explain 分析，如下图所示，我们解决了全表扫描，解决了文件排序等问题，并且成功命中索引。</p>
-<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809135551149.png" alt="image-20220809135551149"></p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL多表索引优化</title>
-    <url>/2022/08/09/MySQL%E5%A4%9A%E8%A1%A8%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `class` (</span><br><span class="line">  `id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `category_name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">9</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `book` (</span><br><span class="line">  `id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `cid` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">11</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="number">6</span>, <span class="string">&#x27;《钢铁是怎么样练成的》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="number">5</span>, <span class="string">&#x27;《风流少爷爱上我》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">6</span>, <span class="number">6</span>, <span class="string">&#x27;《童年》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">7</span>, <span class="number">6</span>, <span class="string">&#x27;《在人间》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">8</span>, <span class="number">6</span>, <span class="string">&#x27;《人生》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">9</span>, <span class="number">7</span>, <span class="string">&#x27;《Java从入门到放弃》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">10</span>, <span class="number">6</span>, <span class="string">&#x27;《我的大学》&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">&#x27;言情类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="string">&#x27;新闻类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">6</span>, <span class="string">&#x27;文学类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">7</span>, <span class="string">&#x27;玄幻类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">8</span>, <span class="string">&#x27;恐怖类&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<p>根据上面的SQL语句，我们可以创建出 book数据表，class 书籍分类表，两张表，并添加数据。</p>
-]]></content>
-      <categories>
-        <category>mysql</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ArrayList底层源码分析</title>
     <url>/2022/06/20/ArrayList/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><code>ArrayList</code><em>集合类实现了</em><code>List</code>接口，是 <strong>顺序容器</strong> ，即元素存放的数据与放进去的顺序相同，允许放入 <code>null</code> 元素，底层通过  Object数组[^1]实现。</p>
@@ -330,6 +271,65 @@
         <tag>学习</tag>
         <tag>笔记</tag>
         <tag>源码解析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL单表索引优化</title>
+    <url>/2022/08/09/MySQL%E5%8D%95%E8%A1%A8%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `article` (</span><br><span class="line">  `id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `author_id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `category_id` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `views` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `comments` <span class="type">int</span> <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `title` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `content` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`),</span><br><span class="line">  KEY `idx_cv` (`category_id`,`views`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">4</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`article` (`id`, `author_id`, `category_id`, `views`, `comments`, `title`, `content`) <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`article` (`id`, `author_id`, `category_id`, `views`, `comments`, `title`, `content`) <span class="keyword">VALUES</span> (<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`article` (`id`, `author_id`, `category_id`, `views`, `comments`, `title`, `content`) <span class="keyword">VALUES</span> (<span class="number">3</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;3&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>通过上述SQL我们可以建立一个article 文章表，以及少量的数据，本案例根据article表进行索引优化案例分析；</p>
+<p>要求：查询出 article 文章表中 category_id &#x3D;1 且 comments &gt;1 且views 浏览量最多的数据。</p>
+<p>SQL语句：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> id,author_id <span class="keyword">from</span> article <span class="keyword">where</span> category_id <span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> comments <span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> views <span class="keyword">desc</span> limit <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134001934.png" alt="image-20220809134001934"></p>
+<p>未建索引之前 </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">show</span> index <span class="keyword">from</span> article;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134156661.png" alt="image-20220809134156661"></p>
+<p>根据Explain 关键字进行分析:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">explain <span class="keyword">select</span> id,author_id <span class="keyword">from</span> article <span class="keyword">where</span> category_id <span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> comments <span class="operator">&gt;</span><span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> views <span class="keyword">desc</span> limit <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>根据Explain关键字得出查询结论，本次查询首先属于全表扫描，其次产生了文件排序，可想而知，如果数据量大的情况下，这个查询的效率是非常low的。</p>
+<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134340148.png" alt="image-20220809134340148"></p>
+<p>我们开始建立索引，根据MySQL索引优化的建议来说，where后面可能会用到的字段，就需要建立索引；</p>
+<p>开始第一次建立索引</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> index idx_ccv <span class="keyword">on</span> article (category_id,comments,views);</span><br><span class="line"><span class="keyword">show</span> index <span class="keyword">from</span> article;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809134949889.png" alt="image-20220809134949889"></p>
+<p>然后再进行一次Explain的查询分析，如下图所示，我们可以看到 type 从ALL 变成了 range，我们解决了全表扫描的问题，并且此次查询命中了索引 idx_ccv ，但是 Using filesort 文件排序的问题还是没有解决。</p>
+<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809135107568.png" alt="image-20220809135107568"></p>
+<p>我们已经建立了索引，为什么没有效果？ </p>
+<blockquote>
+<p>原因是按照Btree索引的工作原理来讲，此次查询是先排序 category_id ,再排序 comments，如果遇到相同的comments 才再排序 views。当comments字段在联合素引里处于中间位置时，因为 comments&gt;1条件是一个范围值（所谓range)，MySQL无法利用素引再对后面的views部分进行检素，即range类型查询字段后面的素引无效。</p>
+</blockquote>
+<p>说明此次索引建立并不合适；</p>
+<p>第二次建立索引，我们先删除第一次建立的索引，再创建新的索引；	<img src="http://cdn.yinyongwei.cn/uPic/image-20220809135438491.png" alt="image-20220809135438491"></p>
+<p>在进行一次Explain 分析，如下图所示，我们解决了全表扫描，解决了文件排序等问题，并且成功命中索引。</p>
+<p><img src="http://cdn.yinyongwei.cn/uPic/image-20220809135551149.png" alt="image-20220809135551149"></p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL多表索引优化</title>
+    <url>/2022/08/09/MySQL%E5%A4%9A%E8%A1%A8%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `class` (</span><br><span class="line">  `id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `category_name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">9</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `book` (</span><br><span class="line">  `id` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `cid` <span class="type">int</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB AUTO_INCREMENT<span class="operator">=</span><span class="number">11</span> <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 <span class="keyword">COLLATE</span><span class="operator">=</span>utf8mb4_0900_ai_ci;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="number">6</span>, <span class="string">&#x27;《钢铁是怎么样练成的》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="number">5</span>, <span class="string">&#x27;《风流少爷爱上我》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">6</span>, <span class="number">6</span>, <span class="string">&#x27;《童年》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">7</span>, <span class="number">6</span>, <span class="string">&#x27;《在人间》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">8</span>, <span class="number">6</span>, <span class="string">&#x27;《人生》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">9</span>, <span class="number">7</span>, <span class="string">&#x27;《Java从入门到放弃》&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`book` (`id`, `cid`, `name`) <span class="keyword">VALUES</span> (<span class="number">10</span>, <span class="number">6</span>, <span class="string">&#x27;《我的大学》&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">&#x27;言情类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="string">&#x27;新闻类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">6</span>, <span class="string">&#x27;文学类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">7</span>, <span class="string">&#x27;玄幻类&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `test01`.`class` (`id`, `category_name`) <span class="keyword">VALUES</span> (<span class="number">8</span>, <span class="string">&#x27;恐怖类&#x27;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>根据上面的SQL语句，我们可以创建出 book数据表，class 书籍分类表，两张表，并添加数据。</p>
+]]></content>
+      <categories>
+        <category>mysql</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -1562,6 +1562,11 @@
       </tags>
   </entry>
   <entry>
+    <title>Vector底层结构与源码分析</title>
+    <url>/2022/06/21/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>MySQL笔记-进阶</title>
     <url>/2022/08/17/MySQL%E7%AC%94%E8%AE%B0-%E8%BF%9B%E9%98%B6/</url>
     <content><![CDATA[<h1 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h1><h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>MySQL体系结构：</p>
@@ -2040,11 +2045,6 @@
         <tag>设备管理</tag>
         <tag>GUI</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Vector底层结构与源码分析</title>
-    <url>/2022/06/21/Vector%E5%BA%95%E5%B1%82%E7%BB%93%E6%9E%84%E4%B8%8E%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>计算机操作系统（三） OS的发展与分类</title>
